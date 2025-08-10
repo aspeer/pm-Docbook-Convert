@@ -212,9 +212,8 @@ my $constant_local_fn="${module_fn}.local";
         meta_display_title_h_style => '=s',
         no_html                    => undef,
         no_image_fetch             => undef,
-        no_warn_unhandled          => undef,
+        #no_warn_unhandled          => undef,
         xmlsuffix                  => '|x=s',
-        verbose                    => '|v',
     },
 
 
@@ -232,7 +231,7 @@ my $constant_local_fn="${module_fn}.local";
             'recurse|r',
             'recursedir|d=s',
             'markdown|md',
-            'pod|pod',
+            'pod',
             'merge',
             'no_warn_unhandled|silent|quiet|s|q',
             'handler|h=s',

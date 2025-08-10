@@ -29,6 +29,7 @@ sub BEGIN {local $^W=0}
 #
 use Docbook::Convert::Constant;
 use Docbook::Convert::Util;
+use Docbook::Convert::POD::Util;
 
 
 #  External modules
@@ -529,14 +530,14 @@ The following environment variables will alter the behaviour or the module as pe
 
 =head1 Files
 
-The file C<<<< <sitelibpath>/Docbook/Convert/Constants.pm >>>> contains global settings which influence the behaviour of the module. Whilst this file can be edited any changes will be overwritten if the module is updated. If a file named C<<<< <sitelibpath>/Docbook/Convert/Constants.pm.local >>>> exists, then any entries in that file will override the local globals. The file format should be that of an anoymous hash reference, e.g file contents of:
+The file  C<<<< <sitelibpath>/Docbook/Convert/Constants.pm >>>>  contains global settings which influence the behaviour of the module. Whilst this file can be edited any changes will be overwritten if the module is updated. If a file named  C<<<< <sitelibpath>/Docbook/Convert/Constants.pm.local >>>>  exists, then any entries in that file will override the local globals. The file format should be that of an anoymous hash reference, e.g file contents of:
 
     {
         NO_HTML         => 1,
         NO_IMAGE_FETCH  => 1
     }
 
-Will change the defaults for the named globals. The syntax needs to be perl correct - check file has no errors when run against C<<<< perl -c -w <dir>/Constants.pm.local >>>>
+Will change the defaults for the named globals. The syntax needs to be perl correct - check file has no errors when run against  C<<<< perl -c -w <dir>/Constants.pm.local >>>>
 
 =head1 Caveats
 
@@ -544,7 +545,7 @@ This module does not puport to handle all Docbook entity tags or templates. It o
 
 =head1 Author
 
-Andrew Speer <aspeer@cpan.org>
+Andrew Speer  <aspeer@cpan.org>
 
 =head1 LICENSE and COPYRIGHT
 
@@ -552,10 +553,10 @@ This file is part of Docbook::Convert.
 
 This software is copyright (c) 2017 by Andrew Speer <andrew.speer@isolutions.com.au>.
 
-This is free software; you can redistribute it and/or modify it under
-the same terms as the Perl 5 programming language system itself.
+This is free software; you can redistribute it and/or modify it underthe same terms as the Perl 5 programming language system itself.
 
 Full license text is available at:
-L<http://dev.perl.org/licenses/>
+
+<http://dev.perl.org/licenses/>
 
 =cut

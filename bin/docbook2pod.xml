@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.2" xmlns="http://docbook.org/ns/docbook">
+  <refmeta>
+    <refentrytitle>docbook2pod</refentrytitle>
+
+    <manvolnum>5</manvolnum>
+  </refmeta>
+
+  <refnamediv>
+    <refname>docbook2pod</refname>
+
+    <refpurpose>Convert Docbook articles and refentry pages to Perl
+    POD</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <cmdsynopsis>
+      <command>docbook2pod file.xml</command>
+    </cmdsynopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Description</title>
+
+    <para>docbook2pod is an alias for the <command>docbook-convert</command>
+    utility pre-configured to produce POD output (i.e. Identical to using
+    <command>docbook-convert --pod</command>). See the
+    <command>docbook-convert</command> man page for the full option
+    list.</para>
+  </refsection>
+</refentry>

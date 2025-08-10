@@ -18,3 +18,24 @@ use FindBin qw($Bin);
 my ($handler)=($0=~/docbook2(\w+)$/);
 exec "$Bin/docbook-convert", "--handler=$handler", @ARGV
 
+__END__
+
+
+=pod
+
+=head1 docbook2pod 5
+
+=head1 NAME
+
+docbook2pod - Convert Docbook articles and refentry pages to Perl
+    POD
+
+=head1 SYNOPSIS
+
+C<<<< docbook2pod file.xml >>>>
+
+=head1 Description
+
+docbook2pod is an alias for the  C<<<< docbook-convert >>>>  utility pre-configured to produce POD output (i.e. Identical to using C<<<< docbook-convert --pod >>>> ). See the C<<<< docbook-convert >>>>  man page for the full option list.
+
+=cut

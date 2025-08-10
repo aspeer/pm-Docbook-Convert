@@ -49,16 +49,14 @@ For full usage instructions see the man page. A quick example:
 
 Docbook::Convert depends heavily on XML::Twig and some other modules. All dependencies are listed in the Makefile.PL and will be installed automaticlly assuming Internet connectivity.
 
-# LICENSE and COPYRIGHT
+# 7 LICENSE and COPYRIGHT #
 
 This file is part of Docbook::Convert.
 
-This software is copyright (c) 2017 by Andrew Speer <andrew.speer@isolutions.com.au>.
+This software is copyright \(c) 2017 by Andrew Speer &lt;andrew.speer@isolutions.com.au&gt;.
 
-This is free software; you can redistribute it and/or modify it under
-the same terms as the Perl 5 programming language system itself.
+This is free software; you can redistribute it and/or modify it underthe same terms as the Perl 5 programming language system itself.
 
 Full license text is available at:
 
-<http://dev.perl.org/licenses/>
-
+&lt;http://dev.perl.org/licenses/&gt;

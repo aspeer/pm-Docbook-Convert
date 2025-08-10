@@ -66,3 +66,14 @@ sub post_initialize {
     $mm_or->{'PM'}{'LICENSE'}='$(INST_LIBDIR)/$(BASEEXT)/LICENSE';
     $mm_or->SUPER::post_initialize;
 };
+sub postamble: {
+    return <<'END';
+doc:
+	@echo Generating doc
+	$(PERL) -I./lib bin/docbook-convert --markdown -o .md *.xml
+	$(PERL) -I./lib bin/docbook-convert --markdown --recursedir=./bin -o .md
+	$(PERL) -I./lib bin/docbook-convert --markdown --recursedir=./lib -o .md
+	$(PERL) -I./lib bin/docbook-convert --pod --recursedir=./bin --merge
+	$(PERL) -I./lib bin/docbook-convert --pod --recursedir=./lib --merge
+END
+}
