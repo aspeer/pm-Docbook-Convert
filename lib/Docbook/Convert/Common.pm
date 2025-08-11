@@ -297,6 +297,8 @@ sub _null {
 
 sub _sect {
     my ($self, $data_ar, $count, $h_level)=@_;
+    my ($md_section_num)=$self->{'md_section_num'};
+    
     my ($title, $subtitle)=
         $self->pull_node_tag_text($data_ar, 'title|subtitle', $NULL);
     debug("title: $title, subtitle: $subtitle");
@@ -306,7 +308,13 @@ sub _sect {
     $h_level ||= 1;
     #my ($h_level)=($tag=~/(\d+)$/) || 1;
     $h_level="_h${h_level}";
-    return join($CR2, grep {$_} $self->$h_level("$count $title"), $text);
+    #return join($CR2, grep {$_} $self->$h_level("$count $title"), $text);
+    if ($md_section_num) {
+        return join($CR2, grep {$_} $self->$h_level("${count}. $title"), $text);
+    }
+    else {
+        return join($CR2, grep {$_} $self->$h_level($title), $text);
+    }
 }
 
 

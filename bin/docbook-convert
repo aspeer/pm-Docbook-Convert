@@ -151,7 +151,7 @@ sub main {
             $output=Docbook::Convert->process($fn, $opt_hr);
         }
         else {
-            print "processing file: $fn\n";
+            msg("processing file: $fn");
             $output=Docbook::Convert->process_file($fn, $opt_hr);
         }
         if ($opt_hr->{'merge'}) {

@@ -210,6 +210,7 @@ my $constant_local_fn="${module_fn}.local";
         meta_display_bottom        => undef,
         meta_display_title         => '=s',
         meta_display_title_h_style => '=s',
+        md_section_num             => undef,
         no_html                    => undef,
         no_image_fetch             => undef,
         #no_warn_unhandled          => undef,
