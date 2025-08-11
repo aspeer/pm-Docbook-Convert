@@ -29,7 +29,7 @@ no warnings qw(uninitialized);
 #
 use Docbook::Convert::Constant;
 use Data::Dumper;
-use CGI;    # for HTMLescape
+use HTML::Entities qw(encode_entities);    # for HTMLescape
 
 
 #  Inherit Base functions (find_node etc.)
@@ -106,7 +106,8 @@ sub _escape {
     $text=~s/\s+([*_`\\{}\[\]\(\)#+-\.\!]+)/ \\$1/g;
 
     #  And HTML
-    $text=CGI::escapeHTML($text);
+    #$text=CGI::escapeHTML($text);
+    $text=encode_entities($text);
     return $text;
 
 }
