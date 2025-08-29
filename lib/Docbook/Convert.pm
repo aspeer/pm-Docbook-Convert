@@ -405,7 +405,7 @@ __END__
 
 =pod
 
-=head1 Docbook::Convert}(3)
+=head1 Docbook::Convert(3)
 
 =head1 NAME
 

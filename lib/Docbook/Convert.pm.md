@@ -1,4 +1,4 @@
-# Docbook::Convert}(3) #
+# Docbook::Convert(3) #
 
 # NAME #
 

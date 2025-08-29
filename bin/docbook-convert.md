@@ -1,4 +1,4 @@
-# docbook-convert}(5) #
+# docbook-convert(5) #
 
 # NAME #
 
