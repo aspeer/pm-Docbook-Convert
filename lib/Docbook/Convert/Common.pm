@@ -573,7 +573,7 @@ sub refmeta {
     my ($self,          $data_ar)=@_;
     my ($refentrytitle, $manvolnum)=
         $self->find_node_tag_text($data_ar, 'refentrytitle|manvolnum', $NULL);
-    my $text=$self->_h1("$refentrytitle $manvolnum");
+    my $text=$self->_h1("$refentrytitle}(${manvolnum})");
     return $text;
 }
 
