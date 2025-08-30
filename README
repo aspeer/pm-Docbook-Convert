@@ -9,14 +9,14 @@ Why use XML for documentation ?
 ===============================
 
 I prefer to write documentation for man pages in Docbook using the XMLMind XXE editor. It has
-Docbook templates and formatting features that allow for quick and easy creation of man pacges,
+Docbook templates and formatting features that allow for quick and easy creation of man pages,
 articles etc. Additionally the XXE editor shows formatting in realtime allowing for a more
 complete sense of what the document will look like when finished.
 
 However I could not find toolsets which gave satisfactory results when converting Docbook to
 Markdown or POD. This module provides a facility to perform those conversions.
 
-Why not write an XLS stylesheet and use XSLT ?
+Why not write an XSL stylesheet and use XSLT ?
 ==============================================
 
 After trying to get my head around the syntax of XSL stylesheets - and failing miserably to
@@ -27,15 +27,23 @@ better than XSL.
 Installation
 ============
 
-The latest code will always be on GitHub. Install via the following commands:
+Docbook-Convert is available on CPAN, and the latest code will always be on GitHub. Install via
+the following commands:
 
+    #  Clone repo
+    #
     git clone https://github.com/aspeer/pm-Docbook-Convert.git
     cd pm-Docbook-Convert
+
+    # Make sure the expat-devel code in installed
+    #
+    dnf install expat-devel  # Fedora
+    apt-get install libexpat1-dev # Debian
 
     # If on a modern system
     cpan .
 
-    # Or
+    # Or with cpanminus (better)
     cpanm .
 
     # Failing that
@@ -57,11 +65,19 @@ For full usage instructions see the man page. A quick example:
     #
     docbook2pod manpage.xml > manpage.pod
 
+    #  More options using the docbook-convert, e.g convert docbook 
+    #  to pod and install into myfile.pl
+    #
+    docbook-convert --pod --merge myfile.pl.xml
+
 Dependencies
 ============
 
-Docbook::Convert depends heavily on XML::Twig and some other modules. All dependencies are
-listed in the Makefile.PL and will be installed automaticlly assuming Internet connectivity.
+Docbook::Convert depends heavily on XML::Twig and some other Perl modules. All dependencies are
+listed in the Makefile.PL and will be installed automatically assuming Internet connectivity.
+
+XML::Twig makes use of XML::Parser which needs the Expat XML Parser library installed. Use of
+system libraries via DNF on Fedora/Redhat or apt-get in Debian will satisfy the dependency.
 
 LICENSE and COPYRIGHT
 =====================
