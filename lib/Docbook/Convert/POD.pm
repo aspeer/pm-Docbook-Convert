@@ -41,7 +41,7 @@ use base Docbook::Convert::POD::Util;
 #  Version information in a format suitable for CPAN etc. Must be
 #  all on one line
 #
-$VERSION='0.020';
+$VERSION='0.021';
 
 
 #  Make synonyms
