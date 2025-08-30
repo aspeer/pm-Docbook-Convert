@@ -41,7 +41,7 @@ $Data::Dumper::Terse=1;
 
 #  Version Info, must be all one line for MakeMaker, CPAN.
 #
-$VERSION='0.021';
+$VERSION='0.022';
 
 
 #  Run main routine
@@ -323,12 +323,13 @@ This utility and associated Perl module will only convert a subset of Docbook en
 
 This file is part of Docbook::Convert.
 
-This software is copyright (c) 2025 by Andrew Speer <andrew.speer@isolutions.com.au>.
+This software is copyright (c) 2025 by Andrew Speer L<mailto:andrew.speer@isolutions.com.au>.
 
-This is free software; you can redistribute it and/or modify it underthe same terms as the Perl 5 programming language system itself.
+This is free software; you can redistribute it and/or modify it under
+the same terms as the Perl 5 programming language system itself.
 
 Full license text is available at:
 
-<http://dev.perl.org/licenses/>
+L<http://dev.perl.org/licenses/>
 
 =cut
