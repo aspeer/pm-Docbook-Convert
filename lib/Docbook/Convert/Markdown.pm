@@ -42,7 +42,7 @@ use base Docbook::Convert::Markdown::Util;
 #  Version information in a format suitable for CPAN etc. Must be
 #  all on one line
 #
-$VERSION='0.026';
+$VERSION='0.027';
 
 
 #  Make synonyms
