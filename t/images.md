@@ -1,4 +1,4 @@
-# 1 Images #
+# Images #
 
 Inline MediaObject:
 

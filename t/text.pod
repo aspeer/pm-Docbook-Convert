@@ -1,6 +1,6 @@
 =pod
 
-=head1 1 
+=head1 
 
 Plain Text
 

@@ -1,6 +1,6 @@
 =pod
 
-=head1 1 Itemized List
+=head1 Itemized List
 
 Itemized list inside para: 
 

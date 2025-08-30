@@ -1,4 +1,4 @@
-# 1 Command Synopsis #
+# Command Synopsis #
 
 `command1 [-1] [-2] [-f filename]`
 

@@ -1,4 +1,4 @@
-# 1 Ordered List #
+# Ordered List #
 
 Ordered list inside para: 
 

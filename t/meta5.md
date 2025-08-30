@@ -1,5 +1,5 @@
 Meta Title
 
-# 1 Section Title #
+# Section Title #
 
 Section Text

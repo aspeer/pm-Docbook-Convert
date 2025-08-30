@@ -1,6 +1,6 @@
 =pod
 
-=head1 1 Command Synopsis
+=head1 Command Synopsis
 
 C<<<< command1 [-1] [-2] [-f I<<< filename >>>] >>>>
 

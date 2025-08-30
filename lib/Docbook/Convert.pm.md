@@ -136,7 +136,7 @@ Andrew Speer  <aspeer@cpan.org>
 
 This file is part of Docbook::Convert.
 
-This software is copyright \(c) 2017 by Andrew Speer &lt;andrew.speer@isolutions.com.au&gt;.
+This software is copyright \(c) 2025 by Andrew Speer &lt;andrew.speer@isolutions.com.au&gt;.
 
 This is free software; you can redistribute it and/or modify it underthe same terms as the Perl 5 programming language system itself.
 

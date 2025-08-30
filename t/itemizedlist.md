@@ -1,4 +1,4 @@
-# 1 Itemized List #
+# Itemized List #
 
 Itemized list inside para: 
 

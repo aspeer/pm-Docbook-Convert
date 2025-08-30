@@ -1,6 +1,6 @@
 =pod
 
-=head1 1 Variable List
+=head1 Variable List
 
 Variable list inside para: 
 

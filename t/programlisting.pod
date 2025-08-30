@@ -1,6 +1,6 @@
 =pod
 
-=head1 1 ProgramListing
+=head1 ProgramListing
 
 Para before ProgramListing
 

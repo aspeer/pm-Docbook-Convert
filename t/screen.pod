@@ -1,6 +1,6 @@
 =pod
 
-=head1 1 Screen
+=head1 Screen
 
     Screen Line 1
     Screen Line 2

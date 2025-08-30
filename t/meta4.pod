@@ -4,7 +4,7 @@ Author: Andrew Speer
 Affiliation: OrgName
 Pubdate: 01 Jan 2016
 
-=head1 1 Section Title
+=head1 Section Title
 
 Section Text Para
 

@@ -1,4 +1,4 @@
-# 1 Admonition #
+# Admonition #
 
 > **NOTE**
 > 

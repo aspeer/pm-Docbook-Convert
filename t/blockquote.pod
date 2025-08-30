@@ -1,6 +1,6 @@
 =pod
 
-=head1 1 Block Quote
+=head1 Block Quote
 
 Non-quote Para 1
 

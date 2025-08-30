@@ -1,4 +1,4 @@
-# 1 Code Blocks #
+# Code Blocks #
 
 Command:
 

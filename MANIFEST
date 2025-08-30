@@ -86,4 +86,10 @@ t/entity.pod
 t/table.xml
 t/table.md
 t/table.pod
-
+bin/docbook-convert.md                   
+bin/docbook2md.md                        
+bin/docbook2md.xml                       
+bin/docbook2pod.md                       
+bin/docbook2pod.xml                      
+cpanfile                                 
+lib/Docbook/Convert.pm.md                

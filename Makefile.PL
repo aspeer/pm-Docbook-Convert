@@ -66,14 +66,25 @@ sub post_initialize {
     $mm_or->{'PM'}{'LICENSE'}='$(INST_LIBDIR)/$(BASEEXT)/LICENSE';
     $mm_or->SUPER::post_initialize;
 };
-sub postamble: {
-    return <<'END';
-doc:
+sub postamble {
+    my $mm_or=shift();
+    my $postamble;
+    eval { ExtUtils::Git->import(); $postamble=&MY::postamble($mm_or) };
+    $postamble.=<<'END';
+doc_xml:
 	@echo Generating doc
 	$(PERL) -I./lib bin/docbook-convert --markdown -o .md *.xml
 	$(PERL) -I./lib bin/docbook-convert --markdown --recursedir=./bin -o .md
 	$(PERL) -I./lib bin/docbook-convert --markdown --recursedir=./lib -o .md
 	$(PERL) -I./lib bin/docbook-convert --pod --recursedir=./bin --merge
 	$(PERL) -I./lib bin/docbook-convert --pod --recursedir=./lib --merge
+	pandoc  --defaults=plain -f docbook -t plain README.xml > README
+
+XML_TIDY = sh -c 'xmlstarlet fo "$$1" | sponge "$$1"'
+doc_xml_tidy:
+	find bin -type f -name '*.xml' -exec $(XML_TIDY) _ {} \;
+	find lib -type f -name '*.xml' -exec $(XML_TIDY) _ {} \;
+
 END
+    return $postamble;
 }

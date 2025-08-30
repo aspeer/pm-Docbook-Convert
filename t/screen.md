@@ -1,4 +1,4 @@
-# 1 Screen #
+# Screen #
 
     Screen Line 1
     Screen Line 2

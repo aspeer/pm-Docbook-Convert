@@ -1,4 +1,4 @@
-# 1 Block Quote #
+# Block Quote #
 
 Non-quote Para 1
 

@@ -1,4 +1,4 @@
-# 1 ProgramListing #
+# ProgramListing #
 
 Para before ProgramListing
 

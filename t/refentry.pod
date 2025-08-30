@@ -1,6 +1,6 @@
 =pod
 
-=head1 Test 1
+=head1 Test(1)
 
 =head1 NAME
 

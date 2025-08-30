@@ -1,6 +1,6 @@
 =pod
 
-=head1 1 Admonition
+=head1 Admonition
 
 B<<< NOTE >>>: This is a Note
 

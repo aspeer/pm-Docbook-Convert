@@ -2,7 +2,7 @@
 
 Meta Title
 
-=head1 1 Section Title
+=head1 Section Title
 
 Section Text
 

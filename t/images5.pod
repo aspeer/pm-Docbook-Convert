@@ -2,7 +2,7 @@
 
 Image Test
 
-=head1 1 Images
+=head1 Images
 
 Inline MediaObject:
 

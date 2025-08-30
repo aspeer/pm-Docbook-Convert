@@ -1,6 +1,6 @@
 Image Test
 
-# 1 Images #
+# Images #
 
 Inline MediaObject:
 

@@ -1,4 +1,4 @@
-# 1 Tables #
+# Tables #
 
 Table Name
 
