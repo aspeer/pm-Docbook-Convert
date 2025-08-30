@@ -12,8 +12,8 @@
 #  <http://dev.perl.org/licenses/>
 #
 use strict qw(vars);
-use lib qw(lib);
-use vars qw($VERSION);
+use lib    qw(lib);
+use vars   qw($VERSION);
 no warnings qw(utf8);
 
 
@@ -79,13 +79,13 @@ sub getopt {
         @getopt_constant,
     ) || pod2usage(2);
     pod2usage(-verbose => 99, -sections => 'SYNOPSIS|Options', -exitval => 1) if $opt{'help'};
-    pod2usage(-verbose => 2) if $opt{'man'};
+    pod2usage(-verbose => 2)                                                  if $opt{'man'};
     $opt{'version'} && do {
         print "$Script version: $VERSION\n";
         exit 0
     };
-    
-    
+
+
     #  Turn on debug and verbosity if needed
     #
     ($VERBOSE, $DEBUG)=@opt{qw(verbose debug)};
@@ -112,7 +112,7 @@ sub getopt {
         };
         find($wanted_cr, $dn);
         @fn ||
-            return err ("no files with '%s' suffix found when recursing directory '$dn'", $XMLSUFFIX);
+            return err("no files with '%s' suffix found when recursing directory '$dn'", $XMLSUFFIX);
         $opt{'infile'}=\@fn;
     }
 
@@ -157,7 +157,7 @@ sub main {
         if ($opt_hr->{'merge'}) {
             (my $out_fn=$fn)=~s/\Q$XMLSUFFIX\E$//;
             unless (-f $out_fn) {
-                return err ("can't merge into file '$out_fn', file does not exist");
+                return err("can't merge into file '$out_fn', file does not exist");
             }
             Docbook::Convert->pod_replace($out_fn, $output);
         }
@@ -172,7 +172,7 @@ sub main {
                 $out_fn.=".${ext}";
             }
             my $out_fh=IO::File->new($out_fn, O_WRONLY | O_CREAT | O_TRUNC) ||
-                return err ("unable to write to output file $out_fn, $!");
+                return err("unable to write to output file $out_fn, $!");
             print $out_fh $output;
         }
         else {

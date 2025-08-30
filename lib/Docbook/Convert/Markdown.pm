@@ -20,7 +20,7 @@ package Docbook::Convert::Markdown;
 #  Pragma
 #
 use strict qw(vars);
-use vars qw($VERSION);
+use vars   qw($VERSION);
 use warnings;
 no warnings qw(uninitialized);
 
@@ -69,8 +69,9 @@ sub warning {    # synonym for caution, important, note, tip
     my $text=$self->pull_node_text($data_ar, $NULL);
     $tag=lc($tag);
     my $admonition=$self->_bold($ADMONITION_TEXT_HR->{$tag});
+
     #return $CR2 . $admonition. $CR2 . $text;
-    return $CR2 . $self->_quote($admonition. $CR2 . $text);
+    return $CR2 . $self->_quote($admonition . $CR2 . $text);
 }
 
 
@@ -78,9 +79,9 @@ sub _plaintext {
 
     my ($self, $tag)=@_;
     return $MD_PLAINTEXT_HR->{$tag}
-    
+
 }
-    
+
 
 sub _dont_escape {
 

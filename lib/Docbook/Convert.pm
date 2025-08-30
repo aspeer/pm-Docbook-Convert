@@ -19,7 +19,7 @@ package Docbook::Convert;
 #  Pragma
 #
 use strict qw(vars);
-use vars qw($VERSION $AUTOLOAD);
+use vars   qw($VERSION $AUTOLOAD);
 use warnings;
 no warnings qw(uninitialized utf8);
 sub BEGIN {local $^W=0}
@@ -178,11 +178,11 @@ sub process {
     #  Load handler
     #
     my $handler=$param_hr->{'handler'} ||
-        return err ('no handler supplied');
+        return err('no handler supplied');
     my $handler_module=$HANDLER_HR->{$handler} ||
-        return err ("unable to load handler: $handler, no module found");
+        return err("unable to load handler: $handler, no module found");
     eval("use $handler_module") || do {
-        return err ("unable to load handler module: $handler_module, $@")
+        return err("unable to load handler module: $handler_module, $@")
             if $@
     };
 
@@ -230,7 +230,7 @@ sub process_file {
     #
     my ($self, $fn, $param_hr)=@_;
     my $fh=IO::File->new($fn, O_RDONLY) ||
-        return err ("unable to open file $fn, $!");
+        return err("unable to open file $fn, $!");
     return $self->process($fh, $param_hr);
 
 }
@@ -247,13 +247,13 @@ sub render {
     #  Get hander
     #
     my $render_or=$handler->new($self) ||
-        return err ("unable to initialise handler $handler");
+        return err("unable to initialise handler $handler");
 
 
     #  Call recurive render routine
     #
     my $output=$self->render_recurse($data_ar, $render_or) ||
-        return err ('unable to get ouput from render');
+        return err('unable to get ouput from render');
 
 
     #  Fix any anchors/links
@@ -298,7 +298,7 @@ sub render_recurse {
     #  Get tag name
     #
     my $tag=$data_ar->[$NODE_IX];
-    
+
 
     #  Get attributes and look for anchor
     #
@@ -311,8 +311,8 @@ sub render_recurse {
         $render_or->{'_id'}{$anchor_id}=($anchor_title);
         debug("anchor found: $anchor_title");
     }
-    
-    
+
+
     #  Does this tag turn on plaintext ? E.g. if withing screen/programlisting/commmand in Markdown no
     #  further markdown is needed
     #
@@ -333,14 +333,14 @@ sub render_recurse {
             }
         }
     }
-    
-    
+
+
     #  Clear plaintext
     #
-    delete $render_or->{'_plaintext'} 
+    delete $render_or->{'_plaintext'}
         if $render_or->_plaintext($tag);
 
-    
+
     #  Render this tag
     #
     my $render=$render_or->$tag($data_ar);
@@ -353,7 +353,7 @@ sub render_recurse {
         my $anchor=($render_or->_anchor($anchor_id, $anchor_title) . $CR2) unless $NO_HTML;
         debug("creating anchor: $anchor, render $render");
         if (ref($render)) {
-            unless($self->{'no_warn_unhandled'}) {
+            unless ($self->{'no_warn_unhandled'}) {
                 warn("warning - unable to add anchor #${anchor_id} for unhandled tag: $tag\n");
             }
         }
@@ -361,7 +361,7 @@ sub render_recurse {
             $render=join($CR2, $anchor, $render) unless ref($render);
         }
     }
-    
+
 
     #  Done
     #

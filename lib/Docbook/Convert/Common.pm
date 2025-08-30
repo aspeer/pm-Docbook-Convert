@@ -20,7 +20,7 @@ package Docbook::Convert::Common;
 #  Pragma
 #
 use strict qw(vars);
-use vars qw($VERSION);
+use vars   qw($VERSION);
 use warnings;
 no warnings qw(uninitialized);
 
@@ -72,7 +72,7 @@ sub _image_build {
     my $alt_text2=$image_data_attr_hr->{'annotations'};
     my $alt_text=$alt_text1 || $alt_text2;
     my $url=$image_data_attr_hr->{'fileref'};
-    
+
 
     #  Generation Options
     #
@@ -133,6 +133,7 @@ sub appendix {
 sub arg {
 
     my ($self, $data_ar)=@_;
+
     #my $text=$self->pull_node_text($data_ar, $SP);
     my $text=$self->pull_node_text($data_ar, $NULL);
     my $attr_hr=$data_ar->[$ATTR_IX] && $data_ar->[$ATTR_IX];
@@ -185,7 +186,7 @@ sub article {
             meta_display_bottom
             meta_display_title
             meta_display_title_h_style
-            )};
+        )};
 
 
     #  Do we want to display meta data - if so format and spit out
@@ -265,6 +266,7 @@ sub cmdsynopsis {
 sub command {
     my ($self, $data_ar)=@_;
     if ($self->find_parent($data_ar, 'screen|programlisting')) {
+
         #  render later
         return $data_ar;
     }
@@ -298,7 +300,7 @@ sub _null {
 sub _sect {
     my ($self, $data_ar, $count, $h_level)=@_;
     my ($md_section_num)=$self->{'md_section_num'};
-    
+
     my ($title, $subtitle)=
         $self->pull_node_tag_text($data_ar, 'title|subtitle', $NULL);
     debug("title: $title, subtitle: $subtitle");
@@ -306,8 +308,10 @@ sub _sect {
     debug("text $text");
     my $tag=$data_ar->[$NODE_IX];
     $h_level ||= 1;
+
     #my ($h_level)=($tag=~/(\d+)$/) || 1;
     $h_level="_h${h_level}";
+
     #return join($CR2, grep {$_} $self->$h_level("$count $title"), $text);
     if ($md_section_num) {
         return join($CR2, grep {$_} $self->$h_level("${count}. $title"), $text);
@@ -378,10 +382,12 @@ sub link {
     }
     elsif (my $linkend=$attr_hr->{'linkend'}) {
         $url="#${linkend}";
+
         #$text ||= $SP . $linkend;
         $text ||= $linkend;
     }
     debug("link $title, $url");
+
     #$text ||= $SP . $url;
     $text ||= $url;
     return $self->_link($url, $text, $title);
@@ -427,11 +433,13 @@ sub orderedlist {
 sub para {
 
     my ($self, $data_ar)=@_;
+
     #my $text=$self->pull_node_text($data_ar, $NULL);
     my $text=$self->pull_node_text($data_ar, $SP);
     return $text;
 
 }
+
 
 sub thead {
 
@@ -439,6 +447,7 @@ sub thead {
     my @row;
     foreach my $row_ar (@{$self->find_node($data_ar, 'row')}) {
         foreach my $entry_ar (@{$self->find_node($row_ar, 'entry')}) {
+
             #print "thead entry_ar: $entry_ar\n";
             my $text=$self->pull_node_text($entry_ar, $NULL);
             $text=$self->text_wrap($text);
@@ -451,6 +460,7 @@ sub thead {
 
 }
 
+
 sub tbody {
 
     my ($self, $data_ar)=@_;
@@ -461,12 +471,14 @@ sub tbody {
             $text=$self->text_wrap($text);
             push @row, $text;
         }
-        push @{$self->{'_table'}{'tbody'}},\@row;
+        push @{$self->{'_table'}{'tbody'}}, \@row;
+
         #push @{$self->{'_table'}{'tbody'}},[map { undef } @row]
     }
     return undef;
 
 }
+
 
 sub table {
 
@@ -474,6 +486,7 @@ sub table {
     my $title=$self->pull_node_tag_text($data_ar, 'title', $NULL);
     my $thead_ar=$self->{'_table'}{'thead'};
     use Text::Table;
+
     #my $table_or=Text::Table->new((map {\"|", $_} @{$thead_ar}), \"|");
     my $table_or=Text::Table->new((map {\'|', $_} @{$thead_ar}), \'|');
 
@@ -489,15 +502,19 @@ sub table {
     my @row=$table_or->table();
     foreach my $row (1..$#row) {
         push @table, $row[$row];
+
         #push @table, $table_or->body_rule(' ', ' ') unless ($_ == $#row);
     }
-    push @table, $table_or->body_rule('-','-');
+    push @table, $table_or->body_rule('-', '-');
+
     #print $self->_code($table_or->stringify());
     #my $table=$table_or->stringify();
     return $title . $CR2 . join(undef, map {"${SP4}$_"} @table) . $CR2;
+
     #return $self->_code($table_or->stringify());
-    
+
 }
+
 
 sub procedure {
 
@@ -530,7 +547,7 @@ sub menuchoice {
     my ($self, $data_ar)=@_;
     my $text=$self->pull_node_text($data_ar, ' > ');
     return $self->_bold($text);
-    
+
 }
 
 
@@ -541,24 +558,25 @@ sub qandadiv {
     my $text=$self->pull_node_text($data_ar, $CR2);
     return join($CR2, $self->_h2($title), $text);
 
-}    
+}
+
 
 sub question {
 
     my ($self, $data_ar)=@_;
     my $text=$self->pull_node_text($data_ar, $CR2);
-    return $self->_bold('Q:').$SP.$text;
+    return $self->_bold('Q:') . $SP . $text;
 
 }
+
 
 sub answer {
 
     my ($self, $data_ar)=@_;
     my $text=$self->pull_node_text($data_ar, $CR2);
-    return $self->_bold('A:').$SP.$text;
+    return $self->_bold('A:') . $SP . $text;
 
 }
-    
 
 
 sub quote {
@@ -627,7 +645,7 @@ sub screen {
 
 sub sect1 {
     my ($self, $data_ar)=@_;
-    
+
     #  Are we nested ?
     #
     my $count=1;
@@ -642,9 +660,9 @@ sub sect1 {
         }
     };
     $cr->($cr, $data_ar);
-    
+
     #  If count > 1 then yes, pretend we are sect2, sect3 etc/
-    if ($count>1) {
+    if ($count > 1) {
         my $sect="sect${count}";
         return $self->$sect($data_ar);
     }
@@ -746,6 +764,7 @@ sub warning {    # synonym for caution, important, note, tip
     return $CR2 . "$admonition: $text";
 }
 
+
 sub footnote {
     my ($self, $data_ar)=@_;
     my $text=$self->pull_node_text($data_ar, $NULL);
@@ -753,10 +772,12 @@ sub footnote {
     return undef;
 }
 
+
 sub xref0 {
     my ($self, $data_ar)=@_;
     my $attr_hr=$data_ar->[$ATTR_IX];
     if (my $linkend=$attr_hr->{'linkend'}) {
+
         #  Don't link at the moment
         return $self->_italic($linkend);
     }

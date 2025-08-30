@@ -20,7 +20,7 @@ package Docbook::Convert::Markdown::Util;
 #  Pragma
 #
 use strict qw(vars);
-use vars qw($VERSION $AUTOLOAD);
+use vars   qw($VERSION $AUTOLOAD);
 use warnings;
 no warnings qw(uninitialized);
 
@@ -99,7 +99,7 @@ sub _h3 {
 
 sub _h4 {
     my ($self, $text)=@_;
-    return $self->{'_plaintext'} ? $text :  "#### $text ####";
+    return $self->{'_plaintext'} ? $text : "#### $text ####";
 }
 
 
@@ -114,7 +114,7 @@ sub _quote {
     $quote.=">${CR}";
     return $quote;
 }
-    
+
 
 sub _image {
     my ($self, $url, $alt_text, $title, $attr_hr)=@_;
@@ -143,7 +143,7 @@ HERE
 
 sub _italic {
     my ($self, $text)=@_;
-    return $self->{'_plaintext'} ? $text :  "*$text*";
+    return $self->{'_plaintext'} ? $text : "*$text*";
 }
 
 

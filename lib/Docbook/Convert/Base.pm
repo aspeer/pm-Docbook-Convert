@@ -20,7 +20,7 @@ package Docbook::Convert::Base;
 #  Pragma
 #
 use strict qw(vars);
-use vars qw($VERSION $AUTOLOAD);
+use vars   qw($VERSION $AUTOLOAD);
 use warnings;
 no warnings qw(uninitialized);
 
@@ -54,8 +54,8 @@ sub new {    ## no subsort
         no_html                    => $NO_HTML,
         no_image_fetch             => $NO_IMAGE_FETCH,
         no_warn_unhandled          => $NO_WARN_UNHANDLED,
-        table_wrap_columns 	   => $TABLE_WRAP_COLUMNS,
-        table_wrap_huge		   => $TABLE_WRAP_HUGE,
+        table_wrap_columns         => $TABLE_WRAP_COLUMNS,
+        table_wrap_huge            => $TABLE_WRAP_HUGE,
         %{$param_hr}
     );
     return bless(\%self, ref($class) || $class);
@@ -114,13 +114,14 @@ sub pull_node_tag_text {
     #  Same as find_node_tag_text but destructive (pulls text out and collapses data_ar to remove text node)
     #
     my $self=shift();
+
     #  Set flag so find_node_tag_text will destroy node after finding. Bit hacky.
     $self->{'_pull_node_tag_text'}++;
     my $text=$self->find_node_tag_text(@_);
     debug($text);
     delete $self->{'_pull_node_tag_text'};
     return $text;
-    
+
 }
 
 
@@ -138,7 +139,7 @@ sub find_node_tag_text {
 
         #print "find tag $tag\n";
         $self->find_node_tag_text_recurse($data_ar, $tag, \@tag) ||
-            return err ();
+            return err();
         debug('about to join %s with %s', Dumper(\@tag), Dumper($join));
         if (@tag) {
             if (ref($join) eq 'SCALAR') {
@@ -177,6 +178,7 @@ sub find_node_tag_text_recurse {
     #  Do the recursive searching for all text and push into array
     #
     my ($self, $data_ar, $tag, $text_ar, $tag_found)=@_;
+
     #print "find $data_ar", Dumper([[caller()]->[0..2]]), "\n";;
     if ((my $node_tag=$data_ar->[$NODE_IX]) eq $tag) {
 
@@ -254,10 +256,10 @@ sub image_getwidth {
 
     my ($self, $url)=@_;
     $self->load_imagemagick() ||
-        return err ();
+        return err();
     my $width;
 
-    my $ua = LWP::UserAgent->new;
+    my $ua=LWP::UserAgent->new;
     $ua->timeout($LWP_TIMEOUT);
     $ua->env_proxy;
     my $code_or=$ua->get($url);
@@ -287,12 +289,12 @@ sub load_imagemagick {
         require Image::Magick;
         1;
     } || do {
-        return err ("unable to load Image::Magic module, $@");
+        return err("unable to load Image::Magic module, $@");
     };
     eval {
         require LWP::UserAgent;
     } || do {
-        return err ("unable to load LWP::Simple module, $@");
+        return err("unable to load LWP::Simple module, $@");
     };
 
 }
@@ -304,7 +306,7 @@ sub text_wrap {
     eval {
         require Text::Wrap;
         1;
-    } || return err ("unable to load Text::Wrap module, $@");
+    } || return err("unable to load Text::Wrap module, $@");
     $self->{'_wrap_init'} ||= do {
         $Text::Wrap::column=$self->{'table_wrap_columns'};
         $Text::Wrap::huge=$self->{'table_wrap_huge'};
@@ -314,7 +316,7 @@ sub text_wrap {
     $text=~s/\t/ /g;
     $text=Text::Wrap::wrap(undef, undef, $text);
     return $text;
-    
+
 }
 
 
@@ -334,7 +336,7 @@ sub AUTOLOAD {
 sub DESTROY {
 
     1;
-    
+
 }
 
 1;

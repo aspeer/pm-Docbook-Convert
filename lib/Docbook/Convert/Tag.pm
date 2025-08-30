@@ -20,7 +20,7 @@ package Docbook::Convert::Tag;
 #  Pragma
 #
 use strict qw(vars);
-use vars qw($VERSION $AUTOLOAD);
+use vars   qw($VERSION $AUTOLOAD);
 use warnings;
 no warnings qw(uninitialized);
 

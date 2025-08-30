@@ -20,7 +20,7 @@ package Docbook::Convert::POD::Util;
 #  Pragma
 #
 use strict qw(vars);
-use vars qw($VERSION);
+use vars   qw($VERSION);
 use warnings;
 no warnings qw(uninitialized);
 
@@ -188,7 +188,7 @@ sub _pod_replace {
     eval {
         require PPI;
         1;
-    } || return err ("unable to load PPI module, $@");
+    } || return err("unable to load PPI module, $@");
 
 
     #  Create new PPI documents from supplied file and new POD

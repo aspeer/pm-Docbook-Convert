@@ -20,7 +20,7 @@ package Docbook::Convert::Constant;
 #  Compiler Pragma
 #
 use strict qw(vars);
-use vars qw($VERSION @ISA %EXPORT_TAGS @EXPORT_OK @EXPORT %Constant);    ## no critic
+use vars   qw($VERSION @ISA %EXPORT_TAGS @EXPORT_OK @EXPORT %Constant);    ## no critic
 use warnings;
 no warnings qw(uninitialized);
 
@@ -104,22 +104,28 @@ my $constant_local_fn="${module_fn}.local";
             term
             code
             option
-            )
+        )
     ],
-    
-    
+
+
     #  Anything below these tags is plaintext - don't markup further
     #
-    MD_PLAINTEXT_HR => { map {$_=>1 } qw(
-        table
-        screen
-        programlisting
-    )},
-    POD_PLAINTEXT_HR => { map {$_=>1 } qw(
-        table
-        screen
-        programlisting
-    )},
+    MD_PLAINTEXT_HR => {
+        map {$_ => 1}
+            qw(
+            table
+            screen
+            programlisting
+            )
+    },
+    POD_PLAINTEXT_HR => {
+        map {$_ => 1}
+            qw(
+            table
+            screen
+            programlisting
+            )
+    },
 
 
     #  Adminition Text
@@ -164,9 +170,9 @@ my $constant_local_fn="${module_fn}.local";
         refsection => [qw(refsect1)],
         para       => [qw(simpara)],
         warning    => [qw(caution important note tip)],
-        code	   => [qw(option varname tag)],
-        link	   => [qw(xref application)],
-        term	   => [qw(guilabel guibutton)],
+        code       => [qw(option varname tag)],
+        link       => [qw(xref application)],
+        term       => [qw(guilabel guibutton)],
 
         #figure     => [qw(screenshot)],
         article => [qw(refentry)],
@@ -200,7 +206,7 @@ my $constant_local_fn="${module_fn}.local";
     NO_WARN_UNHANDLED => 0,
     XMLSUFFIX         => '.xml',
     VERBOSE           => 0,
-    DEBUG	      => 0,
+    DEBUG             => 0,
 
 
     #  Constants that can be set via getopt
@@ -213,8 +219,9 @@ my $constant_local_fn="${module_fn}.local";
         md_section_num             => undef,
         no_html                    => undef,
         no_image_fetch             => undef,
+
         #no_warn_unhandled          => undef,
-        xmlsuffix                  => '|x=s',
+        xmlsuffix => '|x=s',
     },
 
 
@@ -245,17 +252,17 @@ my $constant_local_fn="${module_fn}.local";
     #  Detailed backtrace ?
     #
     ERR_BACKTRACE => 0,
-    
-    
+
+
     #  Table/Text wrap columns size (i.e. max col width of text in a single cell)
     #
-    TABLE_WRAP_COLUMNS		=> 40,
-    TABLE_WRAP_HUGE		=> 'overflow',
-    
-    
+    TABLE_WRAP_COLUMNS => 40,
+    TABLE_WRAP_HUGE    => 'overflow',
+
+
     #  LWP Timeout
     #
-    LWP_TIMEOUT	=> 10,
+    LWP_TIMEOUT => 10,
 
 
     #  Local constants override anything above

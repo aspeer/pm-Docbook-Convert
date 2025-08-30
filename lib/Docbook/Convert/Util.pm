@@ -19,7 +19,7 @@ package Docbook::Convert::Util;
 #  Pragma
 #
 use strict qw(vars);
-use vars qw($VERSION @ISA @EXPORT);
+use vars   qw($VERSION @ISA @EXPORT);
 use warnings;
 no warnings qw(uninitialized);
 
@@ -82,7 +82,7 @@ sub dump_ar {
 
 
 sub whitespace_clean {
-    
+
     my $text=shift();
     debug("whitespace_clean *$text*");
     $text=~s/^\t//gm;
@@ -98,14 +98,16 @@ sub whitespace_clean {
         push @para, $line
     }
     my $para=join($CR, @para);
+
     #my $para=join($SP, @para, $SP);
     $para=~s/\s{2,}/ /;
+
     #$para=~s/^\s+//;
     #$para=~s/\s*$//;
     return $para;
 
 }
-    
+
 
 sub err {
 

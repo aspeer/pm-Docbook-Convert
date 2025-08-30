@@ -20,7 +20,7 @@ package Docbook::Convert::POD;
 #  Pragma
 #
 use strict qw(vars);
-use vars qw($VERSION);
+use vars   qw($VERSION);
 use warnings;
 no warnings qw(uninitialized);
 
@@ -69,9 +69,8 @@ sub _plaintext {
 
     my ($self, $tag)=@_;
     return $POD_PLAINTEXT_HR->{$tag}
-    
-}
 
+}
 
 
 1;
