@@ -69,12 +69,8 @@ sub _bold {
 sub _code {
     my ($self, $text)=@_;
     $text=decode_entities($text);
-    my $max=0;
-    while ($text=~/(`+)/g) {
-        $max=length($1) if length($1) > $max;
-    }
-    my $fence='`' x ($max + 1);
-    #$text=~s/\`//g;
+    $text=~s/\`//g;
+    my $fence='`';
     $text=~s/\s+\Q<**SBR**>\E\s+/`  $CR`/g;
     return $self->{'_plaintext'} ? $text : "${fence}${text}${fence}";
 }
