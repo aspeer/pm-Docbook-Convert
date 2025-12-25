@@ -22,6 +22,7 @@ my %WriteMakefile=(
         'Test::Simple'  =>  '0.44',
         'XML::Twig'     =>  '3.40',
         'Text::Table'   =>  0,
+        'HTML::Entities'=>  0,
     },
     META_MERGE => { 
         'meta-spec'     => {
