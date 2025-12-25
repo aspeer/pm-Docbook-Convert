@@ -29,6 +29,7 @@ no warnings qw(uninitialized);
 #
 use Docbook::Convert::Constant;
 use Data::Dumper;
+use HTML::Entities qw(decode_entities);
 
 
 #  Version information in a format suitable for CPAN etc. Must be
@@ -67,9 +68,15 @@ sub _bold {
 
 sub _code {
     my ($self, $text)=@_;
-    $text=~s/\`//g;
+    $text=decode_entities($text);
+    my $max=0;
+    while ($text=~/(`+)/g) {
+        $max=length($1) if length($1) > $max;
+    }
+    my $fence='`' x ($max + 1);
+    #$text=~s/\`//g;
     $text=~s/\s+\Q<**SBR**>\E\s+/`  $CR`/g;
-    return $self->{'_plaintext'} ? $text : "`$text`";
+    return $self->{'_plaintext'} ? $text : "${fence}${text}${fence}";
 }
 
 
@@ -210,6 +217,21 @@ sub _suffix {
 sub _variablelist_join {
     return "${CR2}${SP4}";
 }
+
+
+#  Experimental
+sub sluggify {
+    my ($self, $title)=@_;
+    my $ix=(($self->{'_split_ix'}||=0)++);
+    chomp $title;
+    die if $title=~/^#\s*$/;
+    $title =~ s/^#+\s*//;                   # Remove leading '#' and whitespace
+    $title =~ s/[^A-Za-z0-9]+/_/g;          # Replace non-alphanumeric chars with underscores
+    $title =~ s/^_+|_+$//g;                 # Trim leading/trailing underscores
+    $title = lc($title); 
+    $title = sprintf('%0.2d_%s.md', $ix, $title);
+    return $title;
+}    
 
 1;
 __END__

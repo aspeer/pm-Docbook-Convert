@@ -112,7 +112,8 @@ sub getopt {
         };
         find($wanted_cr, $dn);
         @fn ||
-            return err("no files with '%s' suffix found when recursing directory '$dn'", $XMLSUFFIX);
+            #return err("no files with '%s' suffix found when recursing directory '$dn'", $XMLSUFFIX);
+            return msg("no files with '%s' suffix found when recursing directory '$dn'", $XMLSUFFIX);
         $opt{'infile'}=\@fn;
     }
 
