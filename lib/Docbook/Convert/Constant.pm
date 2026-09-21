@@ -72,8 +72,7 @@ my $constant_local_fn="${module_fn}.local";
     HANDLER_HR => {
 
         markdown => 'Docbook::Convert::Markdown',
-        md       => 'Docbook::Convert::Markdown',
-        pod      => 'Docbook::Convert::POD'
+        md       => 'Docbook::Convert::Markdown'
 
     },
 
@@ -118,14 +117,6 @@ my $constant_local_fn="${module_fn}.local";
             programlisting
             )
     },
-    POD_PLAINTEXT_HR => {
-        map {$_ => 1}
-            qw(
-            table
-            screen
-            programlisting
-            )
-    },
 
 
     #  Adminition Text
@@ -151,14 +142,6 @@ my $constant_local_fn="${module_fn}.local";
     #
     MD_TAG_SYNONYM_HR => {
         _text => [qw(replaceable)]
-    },
-
-
-    #  Tag synonym for POD
-    #
-    POD_TAG_SYNONYM_HR => {
-        screen => [qw(programlisting)],
-        _text  => [qw(blockquote)],
     },
 
 
@@ -239,8 +222,6 @@ my $constant_local_fn="${module_fn}.local";
             'recurse|r',
             'recursedir|d=s',
             'markdown|md',
-            'pod',
-            'merge',
             'no_warn_unhandled|silent|quiet|s|q',
             'handler|h=s',
             'verbose',
@@ -284,4 +265,3 @@ foreach (keys %Constant) {${$_}=defined $ENV{$_} ? $Constant{$_}=eval($ENV{$_}) 
 %EXPORT_TAGS=(all => [@EXPORT_OK]);
 $_=\%Constant;
 1;
-

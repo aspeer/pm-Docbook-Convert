@@ -1,86 +1,29 @@
-Docbook::Convert README
+# Docbook::Convert
 
-# Docbook::Convert \- migrate Docbook files to Markdown or POD #
+Convert DocBook documentation to Markdown. For large guides, the new
+Pandoc pipeline expands included examples and preserves section IDs and MkDocs
+admonitions using the filters supplied with this distribution.
 
-This Perl module arose from the mixed results I had in migrating Docbook material to Markdown \- and from there to POD \- using pandoc, rman
- and other existing tools. None of the toolchains produced the output I was
- after.
+## Install and convert
 
-# Why use XML for documentation ? #
+Install the CPAN prerequisites with `cpanm .`, and install Pandoc, xmllint
+and xsltproc through your system package manager.
 
-I prefer to write documentation for man pages in Docbook using the XMLMind XXE editor. It has Docbook templates and formatting features that
- allow for quick and easy creation of man pages, articles etc. Additionally
- the XXE editor shows formatting in realtime allowing for a more complete
- sense of what the document will look like when finished.
+```sh
+docbook-convert --pandoc doc/guide.xml > doc/guide.md
+```
 
-However I could not find toolsets which gave satisfactory results when converting Docbook to Markdown or POD. This module provides a
- facility to perform those conversions.
+```perl
+use Docbook::Convert::Pandoc;
+my $markdown=Docbook::Convert::Pandoc->new()->convert_file('doc/guide.xml');
+```
 
-# Why not write an XSL stylesheet and use XSLT ? #
+See [the Pandoc API](lib/Docbook/Convert/Pandoc.pm.md) and
+[the examples](examples/README.md).
 
-After trying to get my head around the syntax of XSL stylesheets \- and failing miserably to produce any decent output using them \- I resorted
- to the &quot;if all you have is a hammer everything looks like a nail&quot; approach
- and do it with a Perl module \- which suited my competencies far better
- than XSL.
+The custom Markdown renderer remains available through `docbook-convert --markdown`.
+A failed Pandoc conversion does not silently fall back to it. Direct DocBook-to-POD
+conversion is retired; use Markdown::Pod::Embed for Perl sidecar documentation.
 
-# Installation #
-
-Docbook-Convert is available on CPAN, and the latest code will always be on GitHub. Install via the following commands:
-
-    #  Clone repo
-    #
-    git clone https://github.com/aspeer/pm-Docbook-Convert.git
-    cd pm-Docbook-Convert
-    
-    # Make sure the expat-devel code in installed
-    #
-    dnf install expat-devel  # Fedora
-    apt-get install libexpat1-dev # Debian
-    
-    # If on a modern system
-    cpan .
-    
-    # Or with cpanminus (better)
-    cpanm .
-    
-    # Failing that
-    perl Makefile.PL
-    make
-    make test
-    make install
-
-# Usage #
-
-For full usage instructions see the man page. A quick example:
-
-    #  Convert to markdown
-    #
-    docbook2md manpage.xml > manpage.md
-    
-    #  Convert to POD
-    #
-    docbook2pod manpage.xml > manpage.pod
-    
-    #  More options using the docbook-convert, e.g convert docbook 
-    #  to pod and install into myfile.pl
-    #
-    docbook-convert --pod --merge myfile.pl.xml
-
-# Dependencies #
-
-Docbook::Convert depends heavily on XML::Twig and some other Perl modules. All dependencies are listed in the Makefile.PL and will be
- installed automatically assuming Internet connectivity.
-
-XML::Twig makes use of XML::Parser which needs the  [Expat XML Parser library](https://libexpat.github.io)  installed. Use of system libraries via DNF on Fedora/Redhat or apt-get in Debian will satisfy the dependency.
-
-# LICENSE and COPYRIGHT #
-
-This file is part of Docbook::Convert.
-
-This software is copyright \(c) 2025 by Andrew Speer &lt;andrew.speer@isolutions.com.au&gt;.
-
-This is free software; you can redistribute it and/or modify it underthe same terms as the Perl 5 programming language system itself.
-
-Full license text is available at:
-
-&lt;http://dev.perl.org/licenses/&gt;
+After ASPEER::MakeMaker::Markdown::Pod is installed, rerun
+`perl Makefile.PL` to enable this distribution's own `make doc` targets.

@@ -3,6 +3,11 @@
 \bCVS\b
 ,v$
 .svn/
+^\.git/
+^MYMETA\.
+^pm_to_blib$
+^site/
+\.fail\.
 
 # ExtUtils::MakeMaker generated files and dirs.
 ^MANIFEST\.(?!SKIP)
@@ -26,3 +31,4 @@
 
 # Git
 ^\.gitignore
+^\.markdown-pod\.json$

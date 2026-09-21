@@ -1,8 +1,23 @@
+requires 'Carp';
+requires 'Cwd';
+requires 'Data::Dumper';
+requires 'File::Basename';
 requires 'HTML::Entities';
-requires 'Test::Simple', '0.44';
+requires 'IPC::Run3';
+requires 'File::Find';
+requires 'File::Spec';
+requires 'File::Temp';
+requires 'FindBin';
+requires 'Getopt::Long';
+requires 'IO::File';
+requires 'Pod::Usage';
 requires 'Text::Table';
 requires 'XML::Twig', '3.40';
+requires 'base';
 requires 'perl', '5.006';
+requires 'strict';
+requires 'vars';
+requires 'warnings';
 suggests 'Image::Magick';
 suggests 'LWP::UserAgent';
 suggests 'PPI';
@@ -10,13 +25,13 @@ suggests 'PPI';
 on configure => sub {
     requires 'ExtUtils::MakeMaker';
     requires 'perl', '5.006';
-};
-
-on build => sub {
-    requires 'ExtUtils::MakeMaker';
+    requires 'version';
+    suggests 'ASPEER::MakeMaker::Markdown::Pod';
 };
 
 on test => sub {
     requires 'Digest::MD5';
+    requires 'File::Path';
+    requires 'File::Temp';
     requires 'Test::More';
 };

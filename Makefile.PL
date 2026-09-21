@@ -1,91 +1,99 @@
 use 5.006;
 use strict;
+use warnings;
+use version;
+
 use ExtUtils::MakeMaker;
-my $mm_ver = $ExtUtils::MakeMaker::VERSION;
-if ($mm_ver =~ /_/) { # dev version
-    $mm_ver = eval $mm_ver;
+
+eval {
+    require ASPEER::MakeMaker::Markdown::Pod;
+    ASPEER::MakeMaker::Markdown::Pod->import();
+    1;
+};
+
+my $mm_ver=$ExtUtils::MakeMaker::VERSION;
+if ($mm_ver=~/_/) {
+    $mm_ver=eval($mm_ver);
     die $@ if $@;
 }
 my %WriteMakefile=(
-    NAME                => 'Docbook::Convert',
-    VERSION_FROM        => 'lib/Docbook/Convert.pm',
-    ABSTRACT_FROM       => 'lib/Docbook/Convert.pm',,
-    EXE_FILES           => [
+    NAME             => 'Docbook::Convert',
+    DISTNAME         => 'Docbook-Convert',
+    VERSION_FROM     => 'lib/Docbook/Convert.pm',
+    ABSTRACT_FROM    => 'lib/Docbook/Convert.pm',
+    EXE_FILES        => [
         'bin/docbook-convert',
-        'bin/docbook2md',
-        'bin/docbook2pod'
+        'bin/docbook2md'
     ],
-    LICENSE             => 'perl',
-    AUTHOR              => 'Andrew Speer <andrew.speer@isolutions.com.au>',
-    MIN_PERL_VERSION	=> '5.006',
-    PREREQ_PM           =>  {
-        'Test::Simple'  =>  '0.44',
-        'XML::Twig'     =>  '3.40',
-        'Text::Table'   =>  0,
-        'HTML::Entities'=>  0,
+    LICENSE          => 'perl',
+    AUTHOR           => 'Andrew Speer <andrew.speer@isolutions.com.au>',
+    MIN_PERL_VERSION => '5.006',
+    PREREQ_PM        => {
+        'Carp'           => 0,
+        'Cwd'            => 0,
+        'Data::Dumper'   => 0,
+        'File::Basename' => 0,
+        'File::Find'     => 0,
+        'File::Spec'     => 0,
+        'File::Temp'     => 0,
+        'FindBin'        => 0,
+        'Getopt::Long'   => 0,
+        'HTML::Entities' => 0,
+        'IO::File'       => 0,
+        'IPC::Run3'      => 0,
+        'Pod::Usage'     => 0,
+        'Text::Table'    => 0,
+        'XML::Twig'      => '3.40',
+        'base'           => 0,
+        'strict'         => 0,
+        'vars'           => 0,
+        'warnings'       => 0,
     },
-    META_MERGE => { 
-        'meta-spec'     => {
-            version     => 2
+    CONFIGURE_REQUIRES => {
+        'ExtUtils::MakeMaker' => 0,
+        'version'             => 0,
+    },
+    TEST_REQUIRES => {
+        'Digest::MD5' => 0,
+        'File::Path'  => 0,
+        'File::Temp'  => 0,
+        'Test::More'  => 0,
+    },
+    META_MERGE => {
+        'meta-spec' => {version => 2},
+        resources   => {
+            homepage   => 'https://gitea.isolutions.com.au/aspeer/pm-Docbook-Convert',
+            repository => {
+                type => 'git',
+                url  => 'https://gitea.isolutions.com.au/aspeer/pm-Docbook-Convert.git',
+                web  => 'https://gitea.isolutions.com.au/aspeer/pm-Docbook-Convert',
+            },
         },
-        resources       => {
-            homepage    => 'https://github.com/aspeer/Docbook-Convert',
-            repository  => {
-                type    => 'git',
-                url     => 'https://github.com/aspeer/Docbook-Convert.git',
-                web     => 'https://github.com/aspeer/Docbook-Convert'
-            }
-        }
     },
-    'depend'            => {
-        Makefile        => '$(VERSION_FROM)',
-    },
-    'dist'		=> {
-	COMPRESS        =>  'gzip -9f',
-	SUFFIX		=>  '.gz'
-    },
+    depend => {Makefile => '$(VERSION_FROM)'},
+    dist   => {COMPRESS => 'gzip -9f', SUFFIX => '.gz'},
 );
 my %MM_Compat=(
-    '6.31'              => [q(LICENSE)],
-    '6.46'              => [q(META_MERGE)],
-    '6.48'              => [q(MIN_PERL_VERSION)],
-    '6.52'              => [q(CONFIGURE_REQUIRES)],
-    '6.5503'            => [q(BUILD_REQUIRES)],
-    '6.64'              => [q(TEST_REQUIRES)],
+    '6.31' => [qw(LICENSE)],
+    '6.46' => [qw(META_MERGE)],
+    '6.48' => [qw(MIN_PERL_VERSION)],
+    '6.52' => [qw(CONFIGURE_REQUIRES)],
+    '6.64' => [qw(TEST_REQUIRES)],
 );
-while (my($mm_ver_test, $ar)=each %MM_Compat) {
+while (my ($mm_ver_test, $name_ar)=each(%MM_Compat)) {
     if (version->parse($mm_ver) < version->parse($mm_ver_test)) {
-        delete @WriteMakefile{@{$ar}};
+        delete(@WriteMakefile{@{$name_ar}});
     }
 }
 WriteMakefile(%WriteMakefile);
 package MY;
 sub post_initialize {
+
+
     #  Add license file, other support files here
     #
     my $mm_or=shift();
     $mm_or->{'PM'}{'LICENSE'}='$(INST_LIBDIR)/$(BASEEXT)/LICENSE';
-    $mm_or->SUPER::post_initialize;
+    return $mm_or->SUPER::post_initialize;
+
 };
-sub postamble {
-    my $mm_or=shift();
-    my $postamble;
-    eval { ExtUtils::Git->import(); $postamble=&MY::postamble($mm_or) };
-    $postamble.=<<'END';
-doc_xml:
-	@echo Generating doc
-	$(PERL) -I./lib bin/docbook-convert --markdown -o .md *.xml
-	$(PERL) -I./lib bin/docbook-convert --markdown --recursedir=./bin -o .md
-	$(PERL) -I./lib bin/docbook-convert --markdown --recursedir=./lib -o .md
-	$(PERL) -I./lib bin/docbook-convert --pod --recursedir=./bin --merge
-	$(PERL) -I./lib bin/docbook-convert --pod --recursedir=./lib --merge
-	pandoc  --defaults=plain -f docbook -t plain README.xml > README
-
-XML_TIDY = sh -c 'xmlstarlet fo "$$1" | sponge "$$1"'
-doc_xml_tidy:
-	find bin -type f -name '*.xml' -exec $(XML_TIDY) _ {} \;
-	find lib -type f -name '*.xml' -exec $(XML_TIDY) _ {} \;
-
-END
-    return $postamble;
-}

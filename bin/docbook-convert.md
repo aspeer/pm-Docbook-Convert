@@ -3,7 +3,7 @@
 # NAME #
 
 docbook-convert - Convert Docbook articles and refentry&#39;s to other formats such
-    as Markdown and POD
+    as Markdown
 
 # SYNOPSIS #
 
@@ -11,16 +11,20 @@ docbook-convert - Convert Docbook articles and refentry&#39;s to other formats s
 
 # Description #
 
-docbook-convert is a front-end to the Docbook::Convert Perl module for converting between Docbook and other formats \- currently Markdown and
- POD. It is intended to let authors write documentation in Docbook and then
- output it to more easily publishable formats such as Markdown \- or have it
- converted to POD and optionally merged into a perl programs or
- module.
+docbook-convert converts DocBook documents to Markdown. Use --pandoc for guides
+with local includes, section IDs and MkDocs admonitions. Direct conversion to
+POD and merging XML into Perl source are no longer supported.
 
 This utility will work on Docbook 4+ Articles and Refentry templates. See Limitations in this document for information on
  capabilities of this program.
 
 # Options #
+
+* **--pandoc**
+
+    Convert a filename to Markdown using Pandoc and the supplied Lua/XSL filters.
+    Local includes are expanded and section IDs preserved. This mode requires
+    pandoc, xmllint and xsltproc.
 
 * **--dump**
 
@@ -28,7 +32,7 @@ This utility will work on Docbook 4+ Articles and Refentry templates. See Limita
 
 * **--handler -h**
 
-    Which output handler to use. Currently one of \--handler=markdown or \--handler-pod
+    Which output handler to use. Use --handler=markdown (or md).
 
 * **--help**
 
@@ -45,12 +49,6 @@ This utility will work on Docbook 4+ Articles and Refentry templates. See Limita
 * **--markdown --md**
 
     Output as Markdown. Shorthand for \--handler=markdown
-
-* **--merge**
-
-    Merge output \(POD only) into an existing Perl program/module. The name of the Docbook file must be the name of the Perl to be
- merged into with an &quot;.xml&quot; suffix appended. E.g. docbook-convert \--pod \--merge myfile.pl.xml will convert the file to POD and append
- it to file myfile.pl
 
 * **--meta_display_title_h_style**
 
@@ -70,7 +68,7 @@ This utility will work on Docbook 4+ Articles and Refentry templates. See Limita
 
 * **--no_html**
 
-    Do not incorporate any HTML in the output \(e.g. images in POD). This may limit what can be converted.
+    Do not incorporate any HTML in the output \(e.g. images). This may limit what can be converted.
 
 * **--no_image_fetch**
 
@@ -115,10 +113,6 @@ This utility will work on Docbook 4+ Articles and Refentry templates. See Limita
     
     docbook-convert --markdown --meta_display_top myarticle.xml -o myarticle.md
     
-    # Merge documentation as POD into an existing Perl program myprog.pl
-    
-    docbook-convert --pod --merge myprog.pl.xml
-
 # Limitations #
 
 This utility and associated Perl module will only convert a subset of Docbook entities and tags.

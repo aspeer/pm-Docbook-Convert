@@ -1,8 +1,13 @@
 # Docbook::Convert(3) #
 
+For guide conversion with Pandoc and packaged filters, use
+`Docbook::Convert::Pandoc->new()->convert_file($filename)`.
+This module documents the retained custom renderer. The two implementations
+are selected explicitly; failures do not trigger an automatic fallback.
+
 # NAME #
 
-Docbook::Convert - Convert Docbook articles and refentry&#39;s to other formats such as Markup and POD
+Docbook::Convert - Convert Docbook articles and refentry&#39;s to other formats such as Markdown
 
 # SYNOPSIS #
 
@@ -12,7 +17,6 @@ Docbook::Convert - Convert Docbook articles and refentry&#39;s to other formats 
 use Docbook::Convert;
 open FILE, 'docbook.xml' or die $!;
 print Docbook::Convert->markdown(*FILE);
-print Docbook::Convert->pod(*FILE);
 
 # Use on existing file
 #
@@ -29,7 +33,7 @@ print Docbook::Convert->markdown($docbook, { meta_display_top=>1 });
 
 # Description #
 
-Docbook::Convert Perl will convert between Docbook and other formats \- currently Markdown and POD. It is intended to let authors write documentation in Docbook, and then output it to more easily publishable formats such as Markdown \- or have it converted to POD and optionally merged into a perl programs or module.
+Docbook::Convert converts DocBook articles and refentries to Markdown. Direct DocBook-to-POD conversion is no longer supported.
 
 It currently supports as subset of Docbook tags, and its intent is to convert Docbook 4+ article and refentry templates with common entites into manual pages or other documentation.
 
@@ -52,14 +56,6 @@ The following public methods are supplied:
 * **markdown_file**
 
     A shortcut to the process_file method with the Markdown handler implied
-
-* **pod($xml, \%opt)**
-
-    A shortcut to the process method with the POD handler implied
-
-* **pod_file($xml, \%opt)**
-
-    A shortcut to the process_file method with the POD handler implied
 
 # Options #
 

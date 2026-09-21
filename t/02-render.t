@@ -33,8 +33,7 @@ $NO_WARN_UNHANDLED=1;
 #  Handlers to test and reference file extenstions
 #
 my %handler=(
-    markdown    => '.md',
-    pod         => '.pod'
+    markdown    => '.md'
 );
 
 
