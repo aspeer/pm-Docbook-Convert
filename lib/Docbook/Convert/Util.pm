@@ -44,7 +44,7 @@ use Carp;
 #  Version information in a format suitable for CPAN etc. Must be
 #  all on one line
 #
-$VERSION='0.027';
+$VERSION='0.028';
 
 
 #  All done, init finished
@@ -152,3 +152,43 @@ sub debug {
     CORE::print STDERR &fmt(@_), "\n" if $DEBUG;
 }
 
+__END__
+
+=begin markdown
+
+# NAME
+
+Docbook::Convert::Util - diagnostics and data helpers for Docbook::Convert
+
+# DESCRIPTION
+
+This internal module supplies error reporting, diagnostic output, whitespace
+cleanup and parse-tree inspection for the retained custom converter.
+Applications should use the public conversion modules rather than importing
+these helpers.
+
+# SEE ALSO
+
+`Docbook::Convert`, `Docbook::Convert::Pandoc`
+
+=end markdown
+
+
+=head1 NAME
+
+Docbook::Convert::Util - diagnostics and data helpers for Docbook::Convert
+
+
+=head1 DESCRIPTION
+
+This internal module supplies error reporting, diagnostic output, whitespace
+cleanup and parse-tree inspection for the retained custom converter.
+Applications should use the public conversion modules rather than importing
+these helpers.
+
+
+=head1 SEE ALSO
+
+C<Docbook::Convert>, C<Docbook::Convert::Pandoc>
+
+=cut

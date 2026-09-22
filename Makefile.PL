@@ -43,6 +43,7 @@ my %WriteMakefile=(
         'IPC::Run3'      => 0,
         'Pod::Usage'     => 0,
         'Text::Table'    => 0,
+        'Text::Wrap'     => 0,
         'XML::Twig'      => '3.40',
         'base'           => 0,
         'strict'         => 0,
@@ -61,7 +62,23 @@ my %WriteMakefile=(
     },
     META_MERGE => {
         'meta-spec' => {version => 2},
+        prereqs     => {
+            configure => {
+                suggests => {
+                    'ASPEER::MakeMaker::Markdown::Pod' => '0.012',
+                },
+            },
+            runtime => {
+                suggests => {
+                    'Image::Magick'  => 0,
+                    'LWP::UserAgent' => 0,
+                },
+            },
+        },
         resources   => {
+            bugtracker => {
+                web => 'https://gitea.isolutions.com.au/aspeer/pm-Docbook-Convert/issues',
+            },
             homepage   => 'https://gitea.isolutions.com.au/aspeer/pm-Docbook-Convert',
             repository => {
                 type => 'git',
@@ -92,8 +109,8 @@ sub post_initialize {
 
     #  Add license file, other support files here
     #
-    my $mm_or=shift();
-    $mm_or->{'PM'}{'LICENSE'}='$(INST_LIBDIR)/$(BASEEXT)/LICENSE';
-    return $mm_or->SUPER::post_initialize;
+    my $self=shift();
+    $self->{'PM'}{'LICENSE'}='$(INST_LIBDIR)/$(BASEEXT)/LICENSE';
+    return $self->SUPER::post_initialize;
 
-};
+}

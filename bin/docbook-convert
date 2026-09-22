@@ -1,4 +1,4 @@
-#!/bin/perl
+#!/usr/bin/env perl
 #
 #  This file is part of Docbook::Convert.
 #
@@ -12,7 +12,6 @@
 #  <http://dev.perl.org/licenses/>
 #
 use strict qw(vars);
-use lib    qw(lib);
 use vars   qw($VERSION);
 no warnings qw(utf8);
 
@@ -40,7 +39,7 @@ $Data::Dumper::Terse=1;
 
 #  Version Info, must be all one line for MakeMaker, CPAN.
 #
-$VERSION='0.027';
+$VERSION='0.028';
 
 
 #  Run main routine
@@ -185,12 +184,9 @@ __END__
 
 =begin markdown
 
-# docbook-convert(1) #
-
 # NAME #
 
-docbook-convert - Convert Docbook articles and refentry&#39;s to other formats such
-    as Markdown
+docbook-convert - convert DocBook articles and reference pages to Markdown
 
 # SYNOPSIS #
 
@@ -310,7 +306,7 @@ This file is part of Docbook::Convert.
 
 This software is copyright \(c) 2025 by Andrew Speer &lt;andrew.speer@isolutions.com.au&gt;.
 
-This is free software; you can redistribute it and/or modify it underthe same terms as the Perl 5 programming language system itself.
+This is free software; you can redistribute it and/or modify it under the same terms as the Perl 5 programming language system itself.
 
 Full license text is available at:
 
@@ -319,13 +315,9 @@ Full license text is available at:
 =end markdown
 
 
-=head1 docbook-convert(1)
-
-
 =head1 NAME
 
-docbook-convert - Convert Docbook articles and refentryE<#39>s to other formats such
-    as Markdown
+docbook-convert - convert DocBook articles and reference pages to Markdown
 
 
 =head1 SYNOPSIS
@@ -527,7 +519,7 @@ This file is part of Docbook::Convert.
 
 This software is copyright (c) 2025 by Andrew Speer E<lt>andrew.speer@isolutions.com.auE<gt>.
 
-This is free software; you can redistribute it and/or modify it underthe same terms as the Perl 5 programming language system itself.
+This is free software; you can redistribute it and/or modify it under the same terms as the Perl 5 programming language system itself.
 
 Full license text is available at:
 

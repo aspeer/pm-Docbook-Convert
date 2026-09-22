@@ -35,7 +35,7 @@ use HTML::Entities qw(decode_entities);
 #  Version information in a format suitable for CPAN etc. Must be
 #  all on one line
 #
-$VERSION='0.027';
+$VERSION='0.028';
 
 
 #===================================================================================================
@@ -224,11 +224,47 @@ sub sluggify {
     $title =~ s/^#+\s*//;                   # Remove leading '#' and whitespace
     $title =~ s/[^A-Za-z0-9]+/_/g;          # Replace non-alphanumeric chars with underscores
     $title =~ s/^_+|_+$//g;                 # Trim leading/trailing underscores
-    $title = lc($title); 
+    $title = lc($title);
     $title = sprintf('%0.2d_%s.md', $ix, $title);
     return $title;
-}    
+}
 
 1;
 __END__
 
+=begin markdown
+
+# NAME
+
+Docbook::Convert::Markdown::Util - formatting helpers for the custom renderer
+
+# DESCRIPTION
+
+This internal class supplies Markdown escaping, links, emphasis, anchors and
+other small formatting operations used by `Docbook::Convert::Markdown`.
+Applications should not call it directly.
+
+# SEE ALSO
+
+`Docbook::Convert::Markdown`
+
+=end markdown
+
+
+=head1 NAME
+
+Docbook::Convert::Markdown::Util - formatting helpers for the custom renderer
+
+
+=head1 DESCRIPTION
+
+This internal class supplies Markdown escaping, links, emphasis, anchors and
+other small formatting operations used by C<Docbook::Convert::Markdown>.
+Applications should not call it directly.
+
+
+=head1 SEE ALSO
+
+C<Docbook::Convert::Markdown>
+
+=cut

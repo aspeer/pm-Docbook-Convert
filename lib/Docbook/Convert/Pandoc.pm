@@ -1,15 +1,33 @@
 package Docbook::Convert::Pandoc;
 
-use strict;
+############################################################################
+#
+#  This file is part of Docbook::Convert.
+#
+#  This software is copyright (c) 2026 by Andrew Speer
+#  <andrew.speer@isolutions.com.au>.
+#
+#  This is free software; you can redistribute it and/or modify it under
+#  the same terms as the Perl 5 programming language system itself.
+#
+############################################################################
+
+use strict qw(vars);
 use warnings;
+use vars qw($VERSION);
+
+#  Core modules
 use File::Basename qw(dirname);
 use File::Find ();
 use File::Spec;
 use File::Temp qw(tempdir tempfile);
 use Cwd qw(abs_path);
+
+#  Non-core modules
 use IPC::Run3 qw(run3);
-use vars qw($VERSION);
-$VERSION='0.001';
+
+#  Version information
+$VERSION='0.028';
 
 sub new {
     my ($class, $opt_hr)=@_;

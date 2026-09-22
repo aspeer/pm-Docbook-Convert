@@ -40,7 +40,7 @@ $Data::Dumper::Terse=1;
 #  Version information in a format suitable for CPAN etc. Must be
 #  all on one line
 #
-$VERSION='0.027';
+$VERSION='0.028';
 
 
 #===================================================================================================
@@ -265,3 +265,49 @@ foreach (keys %Constant) {${$_}=defined $ENV{$_} ? $Constant{$_}=eval($ENV{$_}) 
 %EXPORT_TAGS=(all => [@EXPORT_OK]);
 $_=\%Constant;
 1;
+__END__
+
+=begin markdown
+
+# NAME
+
+Docbook::Convert::Constant - internal constants for Docbook::Convert
+
+# DESCRIPTION
+
+This module exports the parser indexes, handler maps and rendering defaults
+used by the custom converter. Values may be overridden by a
+`Docbook::Convert::Constant.pm.local` file, but that mechanism is retained for
+compatibility rather than recommended for new applications.
+
+Configure new conversions through the documented constructor and method
+options instead.
+
+# SEE ALSO
+
+`Docbook::Convert`
+
+=end markdown
+
+
+=head1 NAME
+
+Docbook::Convert::Constant - internal constants for Docbook::Convert
+
+
+=head1 DESCRIPTION
+
+This module exports the parser indexes, handler maps and rendering defaults
+used by the custom converter. Values may be overridden by a
+C<Docbook::Convert::Constant.pm.local> file, but that mechanism is retained for
+compatibility rather than recommended for new applications.
+
+Configure new conversions through the documented constructor and method
+options instead.
+
+
+=head1 SEE ALSO
+
+C<Docbook::Convert>
+
+=cut

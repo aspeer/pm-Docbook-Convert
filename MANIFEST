@@ -3,7 +3,10 @@ bin/docbook-convert.md
 bin/docbook2md
 bin/docbook2md.md
 bin/docbook2md.xml
+Changes
 cpanfile
+doc/docbook-convert.md
+doc/docbook-convert.xml
 examples/guide/guide.xml
 examples/guide/README.md
 examples/include/example.txt
@@ -13,16 +16,23 @@ examples/README.md
 lib/Docbook/Convert.pm
 lib/Docbook/Convert.pm.md
 lib/Docbook/Convert/Base.pm
+lib/Docbook/Convert/Base.pm.md
 lib/Docbook/Convert/Common.pm
+lib/Docbook/Convert/Common.pm.md
 lib/Docbook/Convert/Constant.pm
+lib/Docbook/Convert/Constant.pm.md
 lib/Docbook/Convert/Markdown.pm
+lib/Docbook/Convert/Markdown.pm.md
 lib/Docbook/Convert/Markdown/Util.pm
+lib/Docbook/Convert/Markdown/Util.pm.md
 lib/Docbook/Convert/Pandoc.pm
 lib/Docbook/Convert/Pandoc.pm.md
 lib/Docbook/Convert/Pandoc/admonition.lua
 lib/Docbook/Convert/Pandoc/promote-title-ids.xsl
 lib/Docbook/Convert/Tag.pm
+lib/Docbook/Convert/Tag.pm.md
 lib/Docbook/Convert/Util.pm
+lib/Docbook/Convert/Util.pm.md
 LICENSE
 Makefile.PL
 MANIFEST			This list of files

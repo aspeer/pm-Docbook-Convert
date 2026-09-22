@@ -40,7 +40,7 @@ use base Docbook::Convert::Base;
 #  Version information in a format suitable for CPAN etc. Must be
 #  all on one line
 #
-$VERSION='0.027';
+$VERSION='0.028';
 
 
 #  Make synonyms
@@ -74,3 +74,41 @@ sub para {
 
 }
 
+__END__
+
+=begin markdown
+
+# NAME
+
+Docbook::Convert::Tag - basic handlers for the custom converter
+
+# DESCRIPTION
+
+This internal class contains basic DocBook handlers shared with the custom
+conversion path. It is retained for compatibility with that renderer and has no
+supported application API.
+
+# SEE ALSO
+
+`Docbook::Convert`, `Docbook::Convert::Common`
+
+=end markdown
+
+
+=head1 NAME
+
+Docbook::Convert::Tag - basic handlers for the custom converter
+
+
+=head1 DESCRIPTION
+
+This internal class contains basic DocBook handlers shared with the custom
+conversion path. It is retained for compatibility with that renderer and has no
+supported application API.
+
+
+=head1 SEE ALSO
+
+C<Docbook::Convert>, C<Docbook::Convert::Common>
+
+=cut

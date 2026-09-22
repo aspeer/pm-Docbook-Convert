@@ -22,7 +22,7 @@ package Docbook::Convert::Base;
 use strict qw(vars);
 use vars   qw($VERSION $AUTOLOAD);
 use warnings;
-no warnings qw(uninitialized);
+no warnings qw(uninitialized once);
 
 
 #  External modules
@@ -35,7 +35,7 @@ use Data::Dumper;
 #  Version information in a format suitable for CPAN etc. Must be
 #  all on one line
 #
-$VERSION='0.027';
+$VERSION='0.028';
 
 
 #===================================================================================================
@@ -289,12 +289,12 @@ sub load_imagemagick {
         require Image::Magick;
         1;
     } || do {
-        return err("unable to load Image::Magic module, $@");
+        return err("unable to load Image::Magick module, $@");
     };
     eval {
         require LWP::UserAgent;
     } || do {
-        return err("unable to load LWP::Simple module, $@");
+        return err("unable to load LWP::UserAgent module, $@");
     };
 
 }
@@ -342,44 +342,52 @@ sub DESTROY {
 1;
 __END__
 
-#  Attic code
-#
-sub find_node_tag_text0 {
+=begin markdown
 
-    my ($self, $data_ar, $tag_ar, $join)=@_;
-    $tag_ar ||= [$data_ar->[$NODE_IX]];
-    unless (ref($tag_ar)) {
-        $tag_ar=[split('\|', $tag_ar)];
-    }
-    my @text;
-    foreach my $tag (@{$tag_ar}) {
+# NAME
 
-        #$self->find_node_tag_text_recurse($data_ar, $tag, \@text) ||
-        #    return err ();
-        my @tag;
-        $self->find_node_tag_text_recurse($data_ar, $tag, \@tag) ||
-            return err ();
-        push @text, [@tag];
-    }
-    if (ref($join) eq 'SCALAR') {
-        return join(${$join}, @text);
-    }
-    elsif (ref($join) eq 'CODE') {
-        return $join->(\@text);
-    }
-    elsif ($join) {
-        return join($join, @text);
-    }
-    elsif (wantarray() && (@{$tag_ar} > 1)) {
-        return @text;
-    }
-    elsif (wantarray()) {
-        return @{$text[0]};
-    }
-    else {
-        return \@text;
-    }
+Docbook::Convert::Base - internal document-tree support for Docbook::Convert
 
-}
+# DESCRIPTION
+
+This module supplies the constructor, tree traversal and handler dispatch used
+by the retained custom DocBook renderer. It is an implementation class for
+`Docbook::Convert`; applications should use `Docbook::Convert` or
+`Docbook::Convert::Pandoc` instead.
+
+# COMPATIBILITY
+
+The custom renderer is retained for existing conversions. New guide conversion
+should normally use the Pandoc pipeline.
+
+# SEE ALSO
+
+`Docbook::Convert`, `Docbook::Convert::Pandoc`
+
+=end markdown
 
 
+=head1 NAME
+
+Docbook::Convert::Base - internal document-tree support for Docbook::Convert
+
+
+=head1 DESCRIPTION
+
+This module supplies the constructor, tree traversal and handler dispatch used
+by the retained custom DocBook renderer. It is an implementation class for
+C<Docbook::Convert>; applications should use C<Docbook::Convert> or
+C<Docbook::Convert::Pandoc> instead.
+
+
+=head1 COMPATIBILITY
+
+The custom renderer is retained for existing conversions. New guide conversion
+should normally use the Pandoc pipeline.
+
+
+=head1 SEE ALSO
+
+C<Docbook::Convert>, C<Docbook::Convert::Pandoc>
+
+=cut

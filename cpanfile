@@ -12,6 +12,7 @@ requires 'Getopt::Long';
 requires 'IO::File';
 requires 'Pod::Usage';
 requires 'Text::Table';
+requires 'Text::Wrap';
 requires 'XML::Twig', '3.40';
 requires 'base';
 requires 'perl', '5.006';
@@ -20,13 +21,12 @@ requires 'vars';
 requires 'warnings';
 suggests 'Image::Magick';
 suggests 'LWP::UserAgent';
-suggests 'PPI';
 
 on configure => sub {
     requires 'ExtUtils::MakeMaker';
     requires 'perl', '5.006';
     requires 'version';
-    suggests 'ASPEER::MakeMaker::Markdown::Pod';
+    suggests 'ASPEER::MakeMaker::Markdown::Pod', '0.012';
 };
 
 on test => sub {

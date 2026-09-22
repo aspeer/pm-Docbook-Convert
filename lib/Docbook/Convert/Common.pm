@@ -40,7 +40,7 @@ use base Docbook::Convert::Base;
 #  Version information in a format suitable for CPAN etc. Must be
 #  all on one line
 #
-$VERSION='0.027';
+$VERSION='0.028';
 
 
 #  Make synonyms
@@ -798,3 +798,46 @@ sub _text_cleanup {
 
 1;
 __END__
+
+=begin markdown
+
+# NAME
+
+Docbook::Convert::Common - shared DocBook element handlers
+
+# DESCRIPTION
+
+This internal class implements element handlers shared by the custom output
+renderers. It converts common structural, inline, list, table, image and link
+elements after `Docbook::Convert` has parsed the source document.
+
+There is no supported application API in this module. Use
+`Docbook::Convert` or `Docbook::Convert::Pandoc`.
+
+# SEE ALSO
+
+`Docbook::Convert`, `Docbook::Convert::Markdown`
+
+=end markdown
+
+
+=head1 NAME
+
+Docbook::Convert::Common - shared DocBook element handlers
+
+
+=head1 DESCRIPTION
+
+This internal class implements element handlers shared by the custom output
+renderers. It converts common structural, inline, list, table, image and link
+elements after C<Docbook::Convert> has parsed the source document.
+
+There is no supported application API in this module. Use
+C<Docbook::Convert> or C<Docbook::Convert::Pandoc>.
+
+
+=head1 SEE ALSO
+
+C<Docbook::Convert>, C<Docbook::Convert::Markdown>
+
+=cut

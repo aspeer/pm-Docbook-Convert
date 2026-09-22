@@ -1,9 +1,6 @@
-# docbook-convert(1) #
-
 # NAME #
 
-docbook-convert - Convert Docbook articles and refentry&#39;s to other formats such
-    as Markdown
+docbook-convert - convert DocBook articles and reference pages to Markdown
 
 # SYNOPSIS #
 
@@ -102,17 +99,17 @@ This utility will work on Docbook 4+ Articles and Refentry templates. See Limita
 # Examples #
 
     # Convert a single file to markdown
-    
+
     docbook-convert --markdown -f mydoc.xml -o mydoc.md
-    
+
     # Convert all files in a directory to markdown
-    
+
     docbook-convert --markdown --recursedir ~/mydoc/ -o .md
-    
+
     # Include meta-data in output
-    
+
     docbook-convert --markdown --meta_display_top myarticle.xml -o myarticle.md
-    
+
 # Limitations #
 
 This utility and associated Perl module will only convert a subset of Docbook entities and tags.
@@ -123,7 +120,7 @@ This file is part of Docbook::Convert.
 
 This software is copyright \(c) 2025 by Andrew Speer &lt;andrew.speer@isolutions.com.au&gt;.
 
-This is free software; you can redistribute it and/or modify it underthe same terms as the Perl 5 programming language system itself.
+This is free software; you can redistribute it and/or modify it under the same terms as the Perl 5 programming language system itself.
 
 Full license text is available at:
 

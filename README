@@ -22,4 +22,4 @@ fall back to it. Direct DocBook-to-POD conversion is retired; use
 Markdown::Pod::Embed for Perl sidecar documentation.
 
 After ASPEER::MakeMaker::Markdown::Pod is installed, rerun
-perl Makefile.PL to enable this distribution’s own make doc targets.
+perl Makefile.PL to enable this distribution's own make doc targets.

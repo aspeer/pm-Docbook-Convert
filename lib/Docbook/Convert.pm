@@ -41,7 +41,7 @@ use Data::Dumper;
 #  Version information in a format suitable for CPAN etc. Must be
 #  all on one line
 #
-$VERSION='0.027';
+$VERSION='0.028';
 
 
 #===================================================================================================
@@ -396,381 +396,183 @@ __END__
 
 =begin markdown
 
-# Docbook::Convert(3) #
+# NAME
 
-For guide conversion with Pandoc and packaged filters, use
-`Docbook::Convert::Pandoc->new()->convert_file($filename)`.
-This module documents the retained custom renderer. The two implementations
-are selected explicitly; failures do not trigger an automatic fallback.
+Docbook::Convert - convert DocBook articles and reference pages to Markdown
 
-# NAME #
+# SYNOPSIS
 
-Docbook::Convert - Convert Docbook articles and refentry&#39;s to other formats such as Markdown
+For the retained custom renderer:
 
-# SYNOPSIS #
-
-```
-# Use on file handle
-#
+```perl
 use Docbook::Convert;
-open FILE, 'docbook.xml' or die $!;
-print Docbook::Convert->markdown(*FILE);
 
-# Use on existing file
-#
-print Docbook::Convert->markdown_file('docbook.xml');
-
-# Use on existing string
-#
-print Docbook::Convert->markdown($docbook);
-
-# Specify output options
-#
-print Docbook::Convert->markdown($docbook, { meta_display_top=>1 });
+my $markdown=Docbook::Convert->markdown_file('doc/guide.xml');
 ```
 
-# Description #
+For guides using the packaged Pandoc pipeline:
 
-Docbook::Convert converts DocBook articles and refentries to Markdown. Direct DocBook-to-POD conversion is no longer supported.
+```perl
+use Docbook::Convert::Pandoc;
 
-It currently supports as subset of Docbook tags, and its intent is to convert Docbook 4+ article and refentry templates with common entites into manual pages or other documentation.
-
-# Methods #
-
-The following public methods are supplied:
-
-* **process($xml, \%opt)**
-
-    Convert an XML string or file handle into a different format. Unless directed via the handler option the default conversion will be to Markdown
-
-* **process_file($filename, \%opt)**
-
-    Convert an XML file \- specified in $filename \- into a different format. As per the process method the default convertsion if not otherwise specified will be Markdown.
-
-* **markdown($xml, \%opt)**
-
-    A shortcut to the process method with the Markdown handler implied
-
-* **markdown_file**
-
-    A shortcut to the process_file method with the Markdown handler implied
-
-# Options #
-
-The following options can be supplied to the process methods as a hash reference as per the synopsis example:
-
-* **meta_display_top**
-
-    If the Docbook Refentry or Article contains metadata \(author, publication date etc.) display it at the top of the file in &quot;key: value&quot; format. By default metadata is not displayed. Supply as boolean.
-
-* **meta_display_bottom**
-
-    As per meta_display_top but output at bottom.
-
-* **meta_display_title**
-
-    If the metadata is to be prefixed with a title supply as a string.
-
-* **meta_display_title_h_style**
-
-    If a title is supplied the option will set which heading style is used to generate it. By default output is the equivalent of &quot;Heading 1&quot;. Supported values are &#39;h1&#39; through to &#39;h4&#39;
-
-* **no_html**
-
-    Do not comingle HTML with the generated output. For some output handlers where the desired output outcome is not available natively HTML may be supplied \(e.g. Markdown). Setting this option to 1 will suppress any HTML output. Naturally this may limit the completeness of any conversion
-
-* **no_image_fetch**
-
-    For some Docbook image entities attributes that control the scaling of images may be supplied. If they are found in some cases the images may need to be fetched to generate the appropriate HTML width paramaters. Setting this option to 1 will suppress any remote image fetching and thus will disable any image scaling in conversions.
-
-* **no_warn_unhandled**
-
-    By default Docbook entites that are not handled in the conversion process \(because the code does not yet cater for them) generate a warning. Setting this option to 1 will suppress any warnings.
-
-# Environment #
-
-The following environment variables will alter the behaviour or the module as per their Option equivalent:
-
-* META_DISPLAY_TOP
-
-* META_DISPLAY_BOTTOM
-
-* META_DISPLAY_TITLE
-
-* META_DISPLAY_TITLE_H_STYLE
-
-* NO_HTML
-
-* NO_IMAGE_FETCH
-
-* NO_WARN_UNHANDLED
-
-# Files #
-
-The file  `&lt;sitelibpath&gt;/Docbook/Convert/Constants.pm`  contains global settings which influence the behaviour of the module. Whilst this file can be edited any changes will be overwritten if the module is updated. If a file named  `&lt;sitelibpath&gt;/Docbook/Convert/Constants.pm.local`  exists, then any entries in that file will override the local globals. The file format should be that of an anoymous hash reference, e.g file contents of:
-
-```
-{
-    NO_HTML         => 1,
-    NO_IMAGE_FETCH  => 1
-}
+my $converter_or=Docbook::Convert::Pandoc->new();
+my $output_fn=$converter_or->convert_file('doc/guide.xml');
 ```
 
-Will change the defaults for the named globals. The syntax needs to be perl correct \- check file has no errors when run against  `perl -c -w <dir>/Constants.pm.local`
+# DESCRIPTION
 
-# Caveats #
+`Docbook::Convert` retains the original Perl renderer for DocBook articles and
+reference pages. `Docbook::Convert::Pandoc` is the preferred path for larger
+guides: it expands local includes and preserves section identifiers,
+admonitions and fenced-code attributes.
 
-This module does not puport to handle all Docbook entity tags or templates. It operates on a limited subset of entity tags commonly used for describing manual pages for Perl modules and other Unix utilities.
+The converter produces Markdown. Perl documentation is subsequently handled by
+`Markdown::Pod::Embed`; direct DocBook-to-POD conversion is retired.
 
-# Author #
+# METHODS
 
-Andrew Speer  <aspeer@cpan.org>
+## process($xml, \%options)
 
-# LICENSE and COPYRIGHT #
+Converts an XML string or filehandle using the selected handler. Markdown is
+the default output.
+
+## process_file($filename, \%options)
+
+Reads and converts a DocBook file.
+
+## markdown($xml, \%options)
+
+Converts an XML string or filehandle with the custom Markdown renderer.
+
+## markdown_file($filename, \%options)
+
+Reads a DocBook file and converts it with the custom Markdown renderer.
+
+# OPTIONS
+
+The custom renderer accepts `meta_display_top`, `meta_display_bottom`,
+`meta_display_title`, `meta_display_title_h_style`, `no_html`,
+`no_image_fetch`, and `no_warn_unhandled`. The matching uppercase environment
+variables provide process-wide defaults.
+
+# LIMITATIONS
+
+The custom renderer supports the subset of DocBook used by the original module
+and utility documentation. It is not a complete DocBook implementation. The
+Pandoc pipeline is explicit and does not silently fall back to the custom
+renderer when an external command fails.
+
+# SEE ALSO
+
+`Docbook::Convert::Pandoc`, `docbook-convert`, `Markdown::Pod::Embed`
+
+# AUTHOR
+
+Andrew Speer <andrew.speer@isolutions.com.au>
+
+# LICENSE AND COPYRIGHT
 
 This file is part of Docbook::Convert.
 
-This software is copyright \(c) 2025 by Andrew Speer &lt;andrew.speer@isolutions.com.au&gt;.
+This software is copyright (c) 2026 by Andrew Speer
+<andrew.speer@isolutions.com.au>.
 
-This is free software; you can redistribute it and/or modify it underthe same terms as the Perl 5 programming language system itself.
-
-Full license text is available at:
-
-&lt;http://dev.perl.org/licenses/&gt;
+This is free software; you can redistribute it and/or modify it under the same
+terms as the Perl 5 programming language system itself.
 
 =end markdown
 
 
-=head1 Docbook::Convert(3)
-
-For guide conversion with Pandoc and packaged filters, use
-C<<< Docbook::Convert::Pandoc->new()->convert_file($filename) >>>.
-This module documents the retained custom renderer. The two implementations
-are selected explicitly; failures do not trigger an automatic fallback.
-
-
 =head1 NAME
 
-Docbook::Convert - Convert Docbook articles and refentryE<#39>s to other formats such as Markdown
+Docbook::Convert - convert DocBook articles and reference pages to Markdown
 
 
 =head1 SYNOPSIS
 
+For the retained custom renderer:
 
- # Use on file handle
- #
+
  use Docbook::Convert;
- open FILE, 'docbook.xml' or die $!;
- print Docbook::Convert->markdown(*FILE);
 
- # Use on existing file
- #
- print Docbook::Convert->markdown_file('docbook.xml');
+ my $markdown=Docbook::Convert->markdown_file('doc/guide.xml');
+For guides using the packaged Pandoc pipeline:
 
- # Use on existing string
- #
- print Docbook::Convert->markdown($docbook);
 
- # Specify output options
- #
- print Docbook::Convert->markdown($docbook, { meta_display_top=>1 });
+ use Docbook::Convert::Pandoc;
 
-=head1 Description
+ my $converter_or=Docbook::Convert::Pandoc->new();
+ my $output_fn=$converter_or->convert_file('doc/guide.xml');
 
-Docbook::Convert converts DocBook articles and refentries to Markdown. Direct DocBook-to-POD conversion is no longer supported.
+=head1 DESCRIPTION
 
-It currently supports as subset of Docbook tags, and its intent is to convert Docbook 4+ article and refentry templates with common entites into manual pages or other documentation.
+C<Docbook::Convert> retains the original Perl renderer for DocBook articles and
+reference pages. C<Docbook::Convert::Pandoc> is the preferred path for larger
+guides: it expands local includes and preserves section identifiers,
+admonitions and fenced-code attributes.
 
+The converter produces Markdown. Perl documentation is subsequently handled by
+C<Markdown::Pod::Embed>; direct DocBook-to-POD conversion is retired.
 
-=head1 Methods
 
-The following public methods are supplied:
+=head1 METHODS
 
-=over
 
-=item *
+=head2 process($xml, \%options)
 
-B<process($xml, \%opt)>
+Converts an XML string or filehandle using the selected handler. Markdown is
+the default output.
 
-Convert an XML string or file handle into a different format. Unless directed via the handler option the default conversion will be to Markdown
 
+=head2 process_file($filename, \%options)
 
+Reads and converts a DocBook file.
 
-=item *
 
-B<process_file($filename, \%opt)>
+=head2 markdown($xml, \%options)
 
-Convert an XML file - specified in $filename - into a different format. As per the process method the default convertsion if not otherwise specified will be Markdown.
+Converts an XML string or filehandle with the custom Markdown renderer.
 
 
+=head2 markdown_file($filename, \%options)
 
-=item *
+Reads a DocBook file and converts it with the custom Markdown renderer.
 
-B<markdown($xml, \%opt)>
 
-A shortcut to the process method with the Markdown handler implied
+=head1 OPTIONS
 
+The custom renderer accepts C<meta_display_top>, C<meta_display_bottom>,
+C<meta_display_title>, C<meta_display_title_h_style>, C<no_html>,
+C<no_image_fetch>, and C<no_warn_unhandled>. The matching uppercase environment
+variables provide process-wide defaults.
 
 
-=item *
+=head1 LIMITATIONS
 
-B<markdown_file>
+The custom renderer supports the subset of DocBook used by the original module
+and utility documentation. It is not a complete DocBook implementation. The
+Pandoc pipeline is explicit and does not silently fall back to the custom
+renderer when an external command fails.
 
-A shortcut to the process_file method with the Markdown handler implied
 
+=head1 SEE ALSO
 
+C<Docbook::Convert::Pandoc>, C<docbook-convert>, C<Markdown::Pod::Embed>
 
-=back
 
+=head1 AUTHOR
 
-=head1 Options
+Andrew Speer L<mailto:andrew.speer@isolutions.com.au>
 
-The following options can be supplied to the process methods as a hash reference as per the synopsis example:
 
-=over
-
-=item *
-
-B<meta_display_top>
-
-If the Docbook Refentry or Article contains metadata (author, publication date etc.) display it at the top of the file in E<quot>key: valueE<quot> format. By default metadata is not displayed. Supply as boolean.
-
-
-
-=item *
-
-B<meta_display_bottom>
-
-As per meta_display_top but output at bottom.
-
-
-
-=item *
-
-B<meta_display_title>
-
-If the metadata is to be prefixed with a title supply as a string.
-
-
-
-=item *
-
-B<meta_display_title_h_style>
-
-If a title is supplied the option will set which heading style is used to generate it. By default output is the equivalent of E<quot>Heading 1E<quot>. Supported values are E<#39>h1E<#39> through to E<#39>h4E<#39>
-
-
-
-=item *
-
-B<no_html>
-
-Do not comingle HTML with the generated output. For some output handlers where the desired output outcome is not available natively HTML may be supplied (e.g. Markdown). Setting this option to 1 will suppress any HTML output. Naturally this may limit the completeness of any conversion
-
-
-
-=item *
-
-B<no_image_fetch>
-
-For some Docbook image entities attributes that control the scaling of images may be supplied. If they are found in some cases the images may need to be fetched to generate the appropriate HTML width paramaters. Setting this option to 1 will suppress any remote image fetching and thus will disable any image scaling in conversions.
-
-
-
-=item *
-
-B<no_warn_unhandled>
-
-By default Docbook entites that are not handled in the conversion process (because the code does not yet cater for them) generate a warning. Setting this option to 1 will suppress any warnings.
-
-
-
-=back
-
-
-=head1 Environment
-
-The following environment variables will alter the behaviour or the module as per their Option equivalent:
-
-=over
-
-=item *
-
-META_DISPLAY_TOP
-
-
-
-=item *
-
-META_DISPLAY_BOTTOM
-
-
-
-=item *
-
-META_DISPLAY_TITLE
-
-
-
-=item *
-
-META_DISPLAY_TITLE_H_STYLE
-
-
-
-=item *
-
-NO_HTML
-
-
-
-=item *
-
-NO_IMAGE_FETCH
-
-
-
-=item *
-
-NO_WARN_UNHANDLED
-
-
-
-=back
-
-
-=head1 Files
-
-The file  C<&lt;sitelibpath&gt;/Docbook/Convert/Constants.pm>  contains global settings which influence the behaviour of the module. Whilst this file can be edited any changes will be overwritten if the module is updated. If a file named  C<&lt;sitelibpath&gt;/Docbook/Convert/Constants.pm.local>  exists, then any entries in that file will override the local globals. The file format should be that of an anoymous hash reference, e.g file contents of:
-
-
- {
-     NO_HTML         => 1,
-     NO_IMAGE_FETCH  => 1
- }
-Will change the defaults for the named globals. The syntax needs to be perl correct - check file has no errors when run against  C<<< perl -c -w <dir>/Constants.pm.local >>>
-
-
-=head1 Caveats
-
-This module does not puport to handle all Docbook entity tags or templates. It operates on a limited subset of entity tags commonly used for describing manual pages for Perl modules and other Unix utilities.
-
-
-=head1 Author
-
-Andrew Speer  L<mailto:aspeer@cpan.org>
-
-
-=head1 LICENSE and COPYRIGHT
+=head1 LICENSE AND COPYRIGHT
 
 This file is part of Docbook::Convert.
 
-This software is copyright (c) 2025 by Andrew Speer E<lt>andrew.speer@isolutions.com.auE<gt>.
+This software is copyright (c) 2026 by Andrew Speer
+L<mailto:andrew.speer@isolutions.com.au>.
 
-This is free software; you can redistribute it and/or modify it underthe same terms as the Perl 5 programming language system itself.
-
-Full license text is available at:
-
-E<lt>L<http://dev.perl.org/licenses/&gt;>
+This is free software; you can redistribute it and/or modify it under the same
+terms as the Perl 5 programming language system itself.
 
 =cut

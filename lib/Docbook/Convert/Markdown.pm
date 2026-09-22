@@ -42,7 +42,7 @@ use base Docbook::Convert::Markdown::Util;
 #  Version information in a format suitable for CPAN etc. Must be
 #  all on one line
 #
-$VERSION='0.027';
+$VERSION='0.028';
 
 
 #  Make synonyms
@@ -115,3 +115,46 @@ sub _escape {
 
 1;
 __END__
+
+=begin markdown
+
+# NAME
+
+Docbook::Convert::Markdown - custom Markdown renderer for Docbook::Convert
+
+# DESCRIPTION
+
+This internal renderer maps the parsed DocBook tree to Markdown for the
+original `Docbook::Convert` implementation. It is selected by
+`Docbook::Convert->markdown()` and `markdown_file()`.
+
+For guides requiring includes, stable section identifiers, code attributes or
+MkDocs admonitions, use `Docbook::Convert::Pandoc`.
+
+# SEE ALSO
+
+`Docbook::Convert`, `Docbook::Convert::Pandoc`
+
+=end markdown
+
+
+=head1 NAME
+
+Docbook::Convert::Markdown - custom Markdown renderer for Docbook::Convert
+
+
+=head1 DESCRIPTION
+
+This internal renderer maps the parsed DocBook tree to Markdown for the
+original C<Docbook::Convert> implementation. It is selected by
+C<<< Docbook::Convert->markdown() >>> and C<markdown_file()>.
+
+For guides requiring includes, stable section identifiers, code attributes or
+MkDocs admonitions, use C<Docbook::Convert::Pandoc>.
+
+
+=head1 SEE ALSO
+
+C<Docbook::Convert>, C<Docbook::Convert::Pandoc>
+
+=cut
