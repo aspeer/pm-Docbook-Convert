@@ -61,6 +61,7 @@ my %WriteMakefile=(
         'Test::More'  => 0,
     },
     META_MERGE => {
+        x_authority => 'cpan:ASPEER',
         'meta-spec' => {version => 2},
         prereqs     => {
             configure => {
@@ -77,13 +78,13 @@ my %WriteMakefile=(
         },
         resources   => {
             bugtracker => {
-                web => 'https://gitea.isolutions.com.au/aspeer/pm-Docbook-Convert/issues',
+                web => 'https://github.com/aspeer/pm-Docbook-Convert/issues',
             },
-            homepage   => 'https://gitea.isolutions.com.au/aspeer/pm-Docbook-Convert',
+            homepage   => 'https://github.com/aspeer/pm-Docbook-Convert',
             repository => {
                 type => 'git',
-                url  => 'https://gitea.isolutions.com.au/aspeer/pm-Docbook-Convert.git',
-                web  => 'https://gitea.isolutions.com.au/aspeer/pm-Docbook-Convert',
+                url  => 'https://github.com/aspeer/pm-Docbook-Convert.git',
+                web  => 'https://github.com/aspeer/pm-Docbook-Convert',
             },
         },
     },

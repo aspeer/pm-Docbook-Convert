@@ -4,6 +4,7 @@ bin/docbook2md
 bin/docbook2md.md
 bin/docbook2md.xml
 Changes
+CONTRIBUTING.md
 cpanfile
 doc/docbook-convert.md
 doc/docbook-convert.xml
@@ -39,6 +40,7 @@ MANIFEST			This list of files
 MANIFEST.SKIP
 README
 README.md
+SECURITY.md
 t/01_load.t
 t/02-render.t
 t/03-pandoc.t

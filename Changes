@@ -1,5 +1,12 @@
 Revision history for Docbook-Convert
 
+1.012  2026-09-26
+
+    - Publish public repository metadata through the GitHub mirror.
+    - Add contributor and security policies, dependency auditing and
+      artifact-attestation verification guidance.
+    - Declare the CPAN authority in module and distribution metadata.
+
 1.011  2026-09-26
 
     - Add the Pandoc conversion pipeline and packaged filters.

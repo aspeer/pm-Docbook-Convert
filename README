@@ -4,6 +4,22 @@ Convert DocBook documentation to Markdown. For large guides, the new
 Pandoc pipeline expands included examples and preserves section IDs and
 MkDocs admonitions using the filters supplied with this distribution.
 
+GitHub Attestations
+
+The release workflow generates GitHub artifact attestations for
+distribution archives. Install the GitHub CLI with gh attestation
+support and authenticate with gh auth login.
+
+Download Docbook-Convert-VERSION.tar.gz from a GitHub release, MetaCPAN,
+or a CPAN mirror, replace VERSION, and verify it with:
+
+    gh attestation verify Docbook-Convert-VERSION.tar.gz --repo aspeer/pm-Docbook-Convert
+
+A successful verification confirms that the archive checksum matches an
+attestation from this repository. The workflow publishes the same
+archive to GitHub Releases and CPAN. Older releases and GitHub's
+automatically generated source-code archives are not covered.
+
 Install and convert
 
 Install the CPAN prerequisites with cpanm ., and install Pandoc, xmllint

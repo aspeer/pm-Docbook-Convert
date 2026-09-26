@@ -19,7 +19,7 @@ package Docbook::Convert;
 #  Pragma
 #
 use strict qw(vars);
-use vars   qw($VERSION $AUTOLOAD);
+use vars   qw($VERSION $AUTHORITY $AUTOLOAD);
 use warnings;
 no warnings qw(uninitialized utf8);
 sub BEGIN {local $^W=0}
@@ -41,6 +41,7 @@ use Data::Dumper;
 #  Version information in a format suitable for CPAN etc. Must be
 #  all on one line
 #
+$AUTHORITY='cpan:ASPEER';
 $VERSION='1.011';
 
 
@@ -470,19 +471,15 @@ renderer when an external command fails.
 
 Andrew Speer <andrew.speer@isolutions.com.au>
 
-# LICENSE and COPYRIGHT
+# LICENSE AND COPYRIGHT
 
 This file is part of Docbook::Convert.
 
-This software is copyright (c) 2026 by Andrew Speer <andrew.speer@isolutions.com.au>.
+This software is copyright (c) 2026 by Andrew Speer
+<andrew.speer@isolutions.com.au>.
 
-This is free software; you can redistribute it and/or modify it under
-the same terms as the Perl 5 programming language system itself.
-
-Full license text is available at:
-
-<http://dev.perl.org/licenses/>
-
+This is free software; you can redistribute it and/or modify it under the same
+terms as the Perl 5 programming language system itself.
 
 =end markdown
 
