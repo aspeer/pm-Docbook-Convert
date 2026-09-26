@@ -1,7 +1,7 @@
 #
 #  This file is part of Docbook::Convert.
 #
-#  This software is copyright (c) 2025 by Andrew Speer <andrew.speer@isolutions.com.au>.
+#  This software is copyright (c) 2026 by Andrew Speer <andrew.speer@isolutions.com.au>.
 #
 #  This is free software; you can redistribute it and/or modify it under
 #  the same terms as the Perl 5 programming language system itself.
@@ -41,7 +41,7 @@ use Data::Dumper;
 #  Version information in a format suitable for CPAN etc. Must be
 #  all on one line
 #
-$VERSION='1.010';
+$VERSION='1.011';
 
 
 #===================================================================================================
@@ -470,15 +470,19 @@ renderer when an external command fails.
 
 Andrew Speer <andrew.speer@isolutions.com.au>
 
-# LICENSE AND COPYRIGHT
+# LICENSE and COPYRIGHT
 
 This file is part of Docbook::Convert.
 
-This software is copyright (c) 2026 by Andrew Speer
-<andrew.speer@isolutions.com.au>.
+This software is copyright (c) 2026 by Andrew Speer <andrew.speer@isolutions.com.au>.
 
-This is free software; you can redistribute it and/or modify it under the same
-terms as the Perl 5 programming language system itself.
+This is free software; you can redistribute it and/or modify it under
+the same terms as the Perl 5 programming language system itself.
+
+Full license text is available at:
+
+<http://dev.perl.org/licenses/>
+
 
 =end markdown
 
