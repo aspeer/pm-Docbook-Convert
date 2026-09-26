@@ -1,6 +1,7 @@
 # Examples
 
-Install Docbook::Convert, Pandoc, xmllint and xsltproc first.
+Install Docbook::Convert from CPAN with `cpanm Docbook::Convert`, and install
+Pandoc, xmllint and xsltproc through your system package manager.
 
 - guide/ demonstrates section IDs, a cross-reference and an admonition.
 - include/ embeds a separate text file into a code example.
