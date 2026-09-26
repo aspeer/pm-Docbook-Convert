@@ -41,7 +41,7 @@ use Data::Dumper;
 #  Version information in a format suitable for CPAN etc. Must be
 #  all on one line
 #
-$VERSION='0.028';
+$VERSION='1.010';
 
 
 #===================================================================================================

@@ -1,4 +1,4 @@
-use 5.006;
+use 5.010;
 use strict;
 use warnings;
 use version;
@@ -27,7 +27,7 @@ my %WriteMakefile=(
     ],
     LICENSE          => 'perl',
     AUTHOR           => 'Andrew Speer <andrew.speer@isolutions.com.au>',
-    MIN_PERL_VERSION => '5.006',
+    MIN_PERL_VERSION => '5.010',
     PREREQ_PM        => {
         'Carp'           => 0,
         'Cwd'            => 0,
@@ -65,7 +65,7 @@ my %WriteMakefile=(
         prereqs     => {
             configure => {
                 suggests => {
-                    'ASPEER::MakeMaker::Markdown::Pod' => '0.012',
+                    'ASPEER::MakeMaker::Markdown::Pod' => '1.010',
                 },
             },
             runtime => {

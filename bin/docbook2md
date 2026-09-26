@@ -17,7 +17,7 @@ use warnings;
 
 use FindBin qw($RealBin $Script);
 
-$VERSION='0.028';
+$VERSION='1.010';
 
 (my $handler=$Script)=~s/^docbook2//;
 exec($^X, "$RealBin/docbook-convert", "--handler=$handler", @ARGV) ||
@@ -45,6 +45,15 @@ pipeline with includes, stable identifiers and packaged filters.
 
 `docbook-convert`, `Docbook::Convert`, `Docbook::Convert::Pandoc`
 
+# AUTHOR
+
+Andrew Speer <andrew.speer@isolutions.com.au>
+
+# LICENSE AND COPYRIGHT
+
+This software is copyright (c) 2025 by Andrew Speer. It may be distributed
+under the same terms as Perl itself.
+
 =end markdown
 
 
@@ -68,5 +77,16 @@ pipeline with includes, stable identifiers and packaged filters.
 =head1 SEE ALSO
 
 C<docbook-convert>, C<Docbook::Convert>, C<Docbook::Convert::Pandoc>
+
+
+=head1 AUTHOR
+
+Andrew Speer L<mailto:andrew.speer@isolutions.com.au>
+
+
+=head1 LICENSE AND COPYRIGHT
+
+This software is copyright (c) 2025 by Andrew Speer. It may be distributed
+under the same terms as Perl itself.
 
 =cut

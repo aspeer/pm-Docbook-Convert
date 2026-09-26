@@ -27,7 +27,7 @@ use Cwd qw(abs_path);
 use IPC::Run3 qw(run3);
 
 #  Version information
-$VERSION='0.028';
+$VERSION='1.010';
 
 sub new {
     my ($class, $opt_hr)=@_;
@@ -194,6 +194,15 @@ for the XML preprocessing commands.
 
 The package supplies its Lua and XSL filters under the adjacent Pandoc directory.
 
+# AUTHOR
+
+Andrew Speer <andrew.speer@isolutions.com.au>
+
+# LICENSE AND COPYRIGHT
+
+This software is copyright (c) 2026 by Andrew Speer. It may be distributed
+under the same terms as Perl itself.
+
 =end markdown
 
 
@@ -237,5 +246,16 @@ associated assets when assembling a site. Network document retrieval is disabled
 for the XML preprocessing commands.
 
 The package supplies its Lua and XSL filters under the adjacent Pandoc directory.
+
+
+=head1 AUTHOR
+
+Andrew Speer L<mailto:andrew.speer@isolutions.com.au>
+
+
+=head1 LICENSE AND COPYRIGHT
+
+This software is copyright (c) 2026 by Andrew Speer. It may be distributed
+under the same terms as Perl itself.
 
 =cut

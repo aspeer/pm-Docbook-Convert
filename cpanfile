@@ -15,7 +15,7 @@ requires 'Text::Table';
 requires 'Text::Wrap';
 requires 'XML::Twig', '3.40';
 requires 'base';
-requires 'perl', '5.006';
+requires 'perl', '5.010';
 requires 'strict';
 requires 'vars';
 requires 'warnings';
@@ -24,9 +24,9 @@ suggests 'LWP::UserAgent';
 
 on configure => sub {
     requires 'ExtUtils::MakeMaker';
-    requires 'perl', '5.006';
+    requires 'perl', '5.010';
     requires 'version';
-    suggests 'ASPEER::MakeMaker::Markdown::Pod', '0.012';
+    suggests 'ASPEER::MakeMaker::Markdown::Pod', '1.010';
 };
 
 on test => sub {

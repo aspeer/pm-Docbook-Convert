@@ -1,7 +1,9 @@
 Revision history for Docbook-Convert
 
-0.028  2026-09-22
+1.011  2026-09-26
 
     - Add the Pandoc conversion pipeline and packaged filters.
     - Preserve section identifiers, includes, admonitions and code examples.
     - Retire direct DocBook-to-POD conversion.
+    - Add recursive conversion, stable output and dry-run processing.
+    - Prepare the consolidated converter for its first CPAN release.

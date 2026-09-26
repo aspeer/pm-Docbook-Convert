@@ -35,7 +35,7 @@ use Data::Dumper;
 #  Version information in a format suitable for CPAN etc. Must be
 #  all on one line
 #
-$VERSION='0.028';
+$VERSION='1.010';
 
 
 #===================================================================================================
@@ -364,6 +364,15 @@ should normally use the Pandoc pipeline.
 
 `Docbook::Convert`, `Docbook::Convert::Pandoc`
 
+# AUTHOR
+
+Andrew Speer <andrew.speer@isolutions.com.au>
+
+# LICENSE AND COPYRIGHT
+
+This software is copyright (c) 2025 by Andrew Speer. It may be distributed
+under the same terms as Perl itself.
+
 =end markdown
 
 
@@ -389,5 +398,16 @@ should normally use the Pandoc pipeline.
 =head1 SEE ALSO
 
 C<Docbook::Convert>, C<Docbook::Convert::Pandoc>
+
+
+=head1 AUTHOR
+
+Andrew Speer L<mailto:andrew.speer@isolutions.com.au>
+
+
+=head1 LICENSE AND COPYRIGHT
+
+This software is copyright (c) 2025 by Andrew Speer. It may be distributed
+under the same terms as Perl itself.
 
 =cut
