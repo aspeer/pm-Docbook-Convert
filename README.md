@@ -33,6 +33,16 @@ attestation from this repository. The workflow publishes the same archive to
 GitHub Releases and CPAN. Older releases and GitHub's automatically generated
 source-code archives are not covered.
 
+## Installation Pre-requisites
+
+Docbook::Convert depends on external system libraries for conversion. It either uses itself - or its downstream dependencies need - the following are installed:
+* `xmllint`
+* `xlstproc`
+* `pandoc`
+* `expat`
+Use your system packaging tool to install *before* installing the module
+
+
 ## Convert
 
 ```sh
@@ -47,9 +57,8 @@ my $markdown=Docbook::Convert::Pandoc->new()->convert_file('doc/guide.xml');
 See [the Pandoc API](lib/Docbook/Convert/Pandoc.pm.md) and
 [the examples](examples/README.md).
 
-The custom Markdown renderer remains available through `docbook-convert --markdown`.
-A failed Pandoc conversion does not silently fall back to it. Direct DocBook-to-POD
-conversion is retired; use Markdown::Pod::Embed for Perl sidecar documentation.
+A custom Markdown renderer is also available through `docbook-convert --markdown`.
+A failed Pandoc conversion does not silently fall back to it.  
 
 For checkout development, install the documentation integration from CPAN with
 `cpanm ASPEER::MakeMaker::Markdown::Pod`, then rerun `perl Makefile.PL` to
