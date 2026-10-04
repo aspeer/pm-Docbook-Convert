@@ -37,9 +37,9 @@ source-code archives are not covered.
 
 Docbook::Convert depends on external system libraries for conversion. It either uses itself - or its downstream dependencies need - the following are installed:
 * `xmllint`
-* `xlstproc`
+* `xsltproc/libxlt`
 * `pandoc`
-* `expat`
+* `expat/expat-devel`
 Use your system packaging tool to install *before* installing the module
 
 
